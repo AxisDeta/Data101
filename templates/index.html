@@ -7,20 +7,23 @@
 </section>
 
 <section class="card">
-  <form method="get" action="{{ url_for('index') }}" class="form-grid">
-    <label>Search
-      <input type="text" name="q" value="{{ search_query or '' }}" placeholder="Try: airflow, mlops, feature engineering">
-    </label>
-    <label>Type
-      <select name="type">
-        <option value="all" {% if (search_type or 'all') == 'all' %}selected{% endif %}>All</option>
-        <option value="file" {% if search_type == 'file' %}selected{% endif %}>Files</option>
-        <option value="link" {% if search_type == 'link' %}selected{% endif %}>Links</option>
-      </select>
-    </label>
-    <button class="btn primary" type="submit">Search</button>
-    <a class="btn ghost" href="{{ url_for('index') }}">Reset</a>
-  </form>
+  <details class="search-panel" {% if search_query or (search_type and search_type != 'all') %}open{% endif %}>
+    <summary>Search & Filter Resources</summary>
+    <form method="get" action="{{ url_for('index') }}" class="form-grid search-form">
+      <label>Search
+        <input type="text" name="q" value="{{ search_query or '' }}" placeholder="Try: airflow, mlops, feature engineering">
+      </label>
+      <label>Type
+        <select name="type">
+          <option value="all" {% if (search_type or 'all') == 'all' %}selected{% endif %}>All</option>
+          <option value="file" {% if search_type == 'file' %}selected{% endif %}>Files</option>
+          <option value="link" {% if search_type == 'link' %}selected{% endif %}>Links</option>
+        </select>
+      </label>
+      <button class="btn primary" type="submit">Search</button>
+      <a class="btn ghost" href="{{ url_for('index') }}">Reset</a>
+    </form>
+  </details>
 </section>
 
 <section class="card">
@@ -41,7 +44,7 @@
             <a class="btn primary" href="{{ item.external_url or item.view_url }}" target="_blank" rel="noopener">View</a>
           {% endif %}
           {% if gemini_enabled %}
-            <button class="btn ghost ask-ai-btn" type="button" data-id="{{ item.id }}" data-title="{{ item.title|e }}">Ask AI</button>
+            <button class="btn ai ask-ai-btn" type="button" data-id="{{ item.id }}" data-title="{{ item.title|e }}">Ask AI</button>
           {% endif %}
         </div>
       </article>
