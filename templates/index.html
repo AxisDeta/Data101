@@ -20,7 +20,7 @@
           {% if item.resource_type == 'file' and item.download_url %}
             <a class="btn primary" href="{{ item.download_url }}" target="_blank" rel="noopener">Download</a>
           {% elif item.resource_type == 'link' %}
-            <a class="btn ghost" href="{{ item.external_url or item.view_url }}" target="_blank" rel="noopener">View</a>
+            <a class="btn primary" href="{{ item.external_url or item.view_url }}" target="_blank" rel="noopener">View</a>
           {% endif %}
         </div>
       </article>
