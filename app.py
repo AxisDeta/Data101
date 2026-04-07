@@ -4,6 +4,7 @@ import base64
 import json
 import os
 import secrets
+import time
 import urllib.parse
 import urllib.request
 import uuid
@@ -15,6 +16,7 @@ import mysql.connector  # type: ignore
 import requests
 from dotenv import load_dotenv
 from flask import Flask, flash, redirect, render_template, request, session, url_for
+import google.generativeai as genai
 
 
 ROOT = Path(__file__).resolve().parent
@@ -66,6 +68,8 @@ class Settings:
     github_repo: str = _env("GITHUB_REPO")
     github_branch: str = _env("GITHUB_BRANCH", "main")
     github_upload_dir: str = _env("GITHUB_UPLOAD_DIR", "resources")
+    gemini_api_key: str = _env("GEMINI_API_KEY")
+    gemini_model: str = _env("GEMINI_MODEL", "gemini-2.5-flash")
 
     @property
     def mysql_enabled(self) -> bool:
@@ -82,6 +86,10 @@ class Settings:
     @property
     def admin_email_set(self) -> set[str]:
         return {item.strip().lower() for item in self.admin_emails.split(",") if item.strip()}
+
+    @property
+    def gemini_enabled(self) -> bool:
+        return bool(self.gemini_api_key)
 
 
 class MySQLStore:
@@ -308,6 +316,11 @@ def create_app() -> Flask:
             github = GitHubOps(settings)
     except Exception:
         github = None
+    if settings.gemini_enabled:
+        try:
+            genai.configure(api_key=settings.gemini_api_key)
+        except Exception:
+            pass
     state: dict[str, Any] = {"store": store, "db_ready": db_ready}
 
     def get_db() -> MySQLStore | None:
@@ -349,7 +362,77 @@ def create_app() -> Flask:
             "current_user": current_user(),
             "admin_visible": can_see_admin(),
             "google_enabled": settings.google_enabled,
+            "gemini_enabled": settings.gemini_enabled,
         }
+
+    def ask_ai_model(context: str, query: str) -> str:
+        if not settings.gemini_enabled:
+            return "AI is currently unavailable."
+        q = (query or "").strip()
+        if len(q) < 3:
+            return "Please ask a more specific question."
+        if len(q) > 1000:
+            return "Your question is too long. Keep it under 1000 characters."
+        prompt = f"""You are an AI assistant helping users understand a learning resource.
+
+STRICT RULES:
+1. Answer using ONLY the context below.
+2. If context is missing the answer, say: "I don't have that information in the provided context."
+3. Do not invent details.
+4. Keep answers concise and practical.
+
+CONTEXT:
+{context}
+
+QUESTION:
+{q}
+"""
+        try:
+            model = genai.GenerativeModel(settings.gemini_model)
+            response = model.generate_content(prompt)
+            text = getattr(response, "text", "") or ""
+            return text.strip() or "I could not generate a response right now."
+        except Exception:
+            return "I’m having trouble connecting to the AI service right now. Please try again."
+
+    @app.post("/ask_ai_resource")
+    def ask_ai_resource():
+        if not settings.gemini_enabled:
+            return {"error": "AI is not configured."}, 503
+
+        # Light session rate-limiting: 20 requests per 5 minutes.
+        now = time.time()
+        if "ai_request_count" not in session:
+            session["ai_request_count"] = 0
+            session["ai_reset_at"] = now
+        if now - float(session.get("ai_reset_at", now)) > 300:
+            session["ai_request_count"] = 0
+            session["ai_reset_at"] = now
+        if int(session.get("ai_request_count", 0)) >= 20:
+            return {"error": "Rate limit exceeded. Please wait a few minutes and try again."}, 429
+        session["ai_request_count"] = int(session.get("ai_request_count", 0)) + 1
+
+        db = get_db()
+        if not db:
+            return {"error": "Database unavailable."}, 503
+        payload = request.get_json(silent=True) or {}
+        resource_id = int(payload.get("resource_id") or 0)
+        query = str(payload.get("query") or "").strip()
+        if not resource_id or not query:
+            return {"error": "Missing resource_id or query."}, 400
+        resource = db.query_one("SELECT * FROM datahub_resources WHERE id=%s", (resource_id,))
+        if not resource:
+            return {"error": "Resource not found."}, 404
+
+        context = (
+            f"Title: {resource.get('title','')}\n"
+            f"Type: {resource.get('resource_type','')}\n"
+            f"Category: {resource.get('category','')}\n"
+            f"Description: {resource.get('description','')}\n"
+            f"Link: {resource.get('external_url') or resource.get('view_url') or ''}\n"
+        )
+        answer = ask_ai_model(context, query)
+        return {"response": answer}
 
     @app.get("/")
     def index():

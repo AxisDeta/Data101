@@ -103,3 +103,29 @@ input, textarea, select {
 .flash.warning { background: rgba(245,158,11,0.15); }
 .flash.danger { background: rgba(239,68,68,0.15); }
 .line-item { padding: 0.5rem 0; border-bottom: 1px dashed var(--border); color: var(--muted); }
+
+.ai-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+.ai-modal-card {
+  width: min(680px, 92vw);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1rem;
+}
+.ai-output {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem;
+  margin: 0.6rem 0;
+  min-height: 120px;
+  white-space: pre-wrap;
+  color: var(--text);
+  background: #0e0e15;
+}

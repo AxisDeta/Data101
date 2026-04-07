@@ -7,6 +7,7 @@ Lightweight Flask app with:
 - Admin panel gated by allowlisted Google email + username/password
 - GitHub PAT uploads for files
 - MySQL storage with `datahub_`-prefixed tables
+- Gemini-powered "Ask AI About This Resource" demo
 
 ## Quick Start
 
@@ -32,3 +33,4 @@ Lightweight Flask app with:
 ## Notes
 
 - This version is intentionally minimal for speed (no heavy async workers, no ORM, no extra framework layers).
+- To enable AI demo, set `GEMINI_API_KEY` and optional `GEMINI_MODEL`.
