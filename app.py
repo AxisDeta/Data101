@@ -26,6 +26,14 @@ def _env(key: str, default: str = "") -> str:
     return value.strip() if value else ""
 
 
+def _env_first(*keys: str, default: str = "") -> str:
+    for key in keys:
+        value = os.getenv(key, "")
+        if value and value.strip():
+            return value.strip()
+    return default
+
+
 def _env_bool(key: str, default: bool = False) -> bool:
     raw = _env(key, "true" if default else "false").lower()
     return raw in {"1", "true", "yes", "on"}
@@ -41,11 +49,11 @@ class Settings:
     admin_password: str = _env("ADMIN_PASSWORD", "jon6y.crae")
     admin_emails: str = _env("ADMIN_EMAILS")
 
-    mysql_host: str = _env("MYSQL_HOST")
-    mysql_port: int = int(_env("MYSQL_PORT", "3306"))
-    mysql_database: str = _env("MYSQL_DATABASE")
-    mysql_user: str = _env("MYSQL_USER")
-    mysql_password: str = _env("MYSQL_PASSWORD")
+    mysql_host: str = _env_first("MYSQL_HOST", "DB_HOST")
+    mysql_port: int = int(_env_first("MYSQL_PORT", "DB_PORT", default="3306"))
+    mysql_database: str = _env_first("MYSQL_DATABASE", "DB_NAME", "DB_DATABASE")
+    mysql_user: str = _env_first("MYSQL_USER", "DB_USER")
+    mysql_password: str = _env_first("MYSQL_PASSWORD", "DB_PASSWORD")
     mysql_ssl_ca: str = _env("MYSQL_SSL_CA")
     mysql_ssl_disabled: bool = _env_bool("MYSQL_SSL_DISABLED", default=False)
 
@@ -300,6 +308,28 @@ def create_app() -> Flask:
             github = GitHubOps(settings)
     except Exception:
         github = None
+    state: dict[str, Any] = {"store": store, "db_ready": db_ready}
+
+    def get_db() -> MySQLStore | None:
+        existing = state.get("store")
+        if isinstance(existing, MySQLStore):
+            try:
+                existing.query_one("SELECT 1 AS ok")
+                state["db_ready"] = True
+                return existing
+            except Exception:
+                state["store"] = None
+                state["db_ready"] = False
+        try:
+            fresh = MySQLStore(settings)
+            fresh.ensure_schema()
+            state["store"] = fresh
+            state["db_ready"] = True
+            return fresh
+        except Exception:
+            state["store"] = None
+            state["db_ready"] = False
+            return None
 
     def current_user() -> dict[str, Any] | None:
         user = session.get("google_user")
@@ -324,8 +354,9 @@ def create_app() -> Flask:
     @app.get("/")
     def index():
         resources: list[dict[str, Any]] = []
-        if db_ready and store:
-            resources = store.query_all("SELECT * FROM datahub_resources ORDER BY created_at DESC")
+        db = get_db()
+        if db:
+            resources = db.query_all("SELECT * FROM datahub_resources ORDER BY created_at DESC")
         return render_template("index.html", resources=resources, google_enabled=settings.google_enabled)
 
     @app.get("/questions")
@@ -334,7 +365,8 @@ def create_app() -> Flask:
 
     @app.post("/questions")
     def questions_submit():
-        if not (db_ready and store):
+        db = get_db()
+        if not db:
             flash("Messaging is temporarily unavailable.", "danger")
             return redirect(url_for("questions_page"))
         name = request.form.get("name", "").strip()
@@ -343,7 +375,7 @@ def create_app() -> Flask:
         if not (name and email and message):
             flash("Please fill in all fields.", "warning")
             return redirect(url_for("questions_page"))
-        store.execute(
+        db.execute(
             "INSERT INTO datahub_user_queries (name, email, message) VALUES (%s, %s, %s)",
             (name, email, message),
         )
@@ -374,20 +406,21 @@ def create_app() -> Flask:
             profile = fetch_google_profile(token.get("access_token", ""))
             session["google_user"] = profile
             session.pop("oauth_state", None)
-            if db_ready and store:
+            db = get_db()
+            if db:
                 google_sub = profile.get("sub")
                 email = profile.get("email")
                 full_name = profile.get("name") or "Learner"
                 picture_url = profile.get("picture")
                 if google_sub and email:
-                    existing = store.query_one("SELECT id FROM datahub_google_signups WHERE email=%s", (email,))
+                    existing = db.query_one("SELECT id FROM datahub_google_signups WHERE email=%s", (email,))
                     if existing:
-                        store.execute(
+                        db.execute(
                             "UPDATE datahub_google_signups SET google_sub=%s, full_name=%s, picture_url=%s WHERE id=%s",
                             (google_sub, full_name, picture_url, existing["id"]),
                         )
                     else:
-                        store.execute(
+                        db.execute(
                             "INSERT INTO datahub_google_signups (google_sub, email, full_name, picture_url) VALUES (%s, %s, %s, %s)",
                             (google_sub, email, full_name, picture_url),
                         )
@@ -432,17 +465,19 @@ def create_app() -> Flask:
         resources: list[dict[str, Any]] = []
         messages: list[dict[str, Any]] = []
         signups: list[dict[str, Any]] = []
-        if db_ready and store:
-            resources = store.query_all("SELECT * FROM datahub_resources ORDER BY created_at DESC")
-            messages = store.query_all("SELECT * FROM datahub_user_queries ORDER BY created_at DESC LIMIT 200")
-            signups = store.query_all("SELECT * FROM datahub_google_signups ORDER BY created_at DESC LIMIT 200")
+        db = get_db()
+        if db:
+            resources = db.query_all("SELECT * FROM datahub_resources ORDER BY created_at DESC")
+            messages = db.query_all("SELECT * FROM datahub_user_queries ORDER BY created_at DESC LIMIT 200")
+            signups = db.query_all("SELECT * FROM datahub_google_signups ORDER BY created_at DESC LIMIT 200")
         return render_template("admin.html", resources=resources, messages=messages, signups=signups, github_enabled=bool(github))
 
     @app.post("/admin/resource/link")
     def admin_add_link():
         if not can_see_admin() or not session.get("admin_ok"):
             return redirect(url_for("admin_login"))
-        if not (db_ready and store):
+        db = get_db()
+        if not db:
             flash("Database unavailable.", "danger")
             return redirect(url_for("admin_panel"))
         title = request.form.get("title", "").strip()
@@ -452,7 +487,7 @@ def create_app() -> Flask:
         if not (title and link_url):
             flash("Title and URL are required.", "warning")
             return redirect(url_for("admin_panel"))
-        store.execute(
+        db.execute(
             """
             INSERT INTO datahub_resources
             (title, description, resource_type, category, external_url, view_url, download_url, created_by)
@@ -467,7 +502,8 @@ def create_app() -> Flask:
     def admin_upload_file():
         if not can_see_admin() or not session.get("admin_ok"):
             return redirect(url_for("admin_login"))
-        if not (db_ready and store):
+        db = get_db()
+        if not db:
             flash("Database unavailable.", "danger")
             return redirect(url_for("admin_panel"))
         if not github:
@@ -483,7 +519,7 @@ def create_app() -> Flask:
         try:
             payload = file_obj.read()
             result = github.upload(file_obj.filename, payload)
-            store.execute(
+            db.execute(
                 """
                 INSERT INTO datahub_resources
                 (title, description, resource_type, category, file_name, file_size, mime_type, github_path, view_url, download_url, created_by)
@@ -511,13 +547,14 @@ def create_app() -> Flask:
     def admin_delete_resource(resource_id: int):
         if not can_see_admin() or not session.get("admin_ok"):
             return redirect(url_for("admin_login"))
-        if not (db_ready and store):
+        db = get_db()
+        if not db:
             flash("Database unavailable.", "danger")
             return redirect(url_for("admin_panel"))
-        row = store.query_one("SELECT github_path FROM datahub_resources WHERE id=%s", (resource_id,))
+        row = db.query_one("SELECT github_path FROM datahub_resources WHERE id=%s", (resource_id,))
         if row and row.get("github_path") and github:
             github.delete(str(row["github_path"]))
-        store.execute("DELETE FROM datahub_resources WHERE id=%s", (resource_id,))
+        db.execute("DELETE FROM datahub_resources WHERE id=%s", (resource_id,))
         flash("Resource deleted.", "success")
         return redirect(url_for("admin_panel"))
 
