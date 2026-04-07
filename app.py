@@ -467,6 +467,10 @@ QUESTION:
     def questions_page():
         return render_template("questions.html")
 
+    @app.get("/course/ai-engineering-transition")
+    def course_ai_engineering_transition():
+        return render_template("course_ai_engineering.html")
+
     @app.post("/questions")
     def questions_submit():
         db = get_db()
