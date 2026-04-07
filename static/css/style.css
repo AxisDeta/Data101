@@ -61,6 +61,18 @@ body {
   color: #111827 !important;
 }
 .google-btn svg { display: block; }
+.google-cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.24rem;
+}
+.google-help {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
 
 .main-wrap { padding: 22px 0 40px; }
 .hero {
@@ -262,6 +274,13 @@ input, textarea, select {
     width: 100%;
     justify-content: flex-end;
     margin-left: 0;
+  }
+  .google-cta {
+    width: 100%;
+    align-items: flex-end;
+  }
+  .google-help {
+    text-align: right;
   }
   .resource-row {
     flex-direction: column;

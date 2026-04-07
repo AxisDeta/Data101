@@ -568,7 +568,7 @@ QUESTION:
                             "INSERT INTO datahub_google_signups (google_sub, email, full_name, picture_url) VALUES (%s, %s, %s, %s)",
                             (google_sub, email, full_name, picture_url),
                         )
-            flash("Signed in with Google.", "success")
+            flash("Signed in with Google. You will receive email updates when new resources are published.", "success")
         except Exception:
             flash("Google sign-in failed. Please try again.", "danger")
         return redirect(url_for("index"))
