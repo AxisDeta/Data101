@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-kicker">COMMUNITY DESK</div>
+  <h1>Ask A Question</h1>
+  <p>Share your question, request, or feedback.</p>
+</section>
+
+<section class="card">
+  <form method="post" action="{{ url_for('questions_submit') }}" class="form-grid">
+    <label>Name<input type="text" name="name" required /></label>
+    <label>Email<input type="email" name="email" required /></label>
+    <label class="wide">Message<textarea name="message" rows="6" required></textarea></label>
+    <button class="btn primary" type="submit">Send Message</button>
+  </form>
+</section>
+{% endblock %}

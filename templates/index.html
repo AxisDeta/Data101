@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-kicker">AI | DATA ENGINEERING | MACHINE LEARNING</div>
+  <h1>Resource Hub For Data Enthusiasts</h1>
+  <p>Fast access to curated PDFs, docs, repos, and learning links.</p>
+</section>
+
+<section class="card">
+  <h2>Resources</h2>
+  {% if resources %}
+    {% for item in resources %}
+      <article class="resource-row">
+        <div>
+          <h3>{{ item.title }}</h3>
+          {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+          <div class="meta">{{ item.resource_type|upper }} | {{ item.category or 'General' }}</div>
+        </div>
+        <div class="actions">
+          {% if item.resource_type == 'file' and item.download_url %}
+            <a class="btn primary" href="{{ item.download_url }}" target="_blank" rel="noopener">Download</a>
+          {% elif item.resource_type == 'link' %}
+            <a class="btn ghost" href="{{ item.external_url or item.view_url }}" target="_blank" rel="noopener">View</a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  {% else %}
+    <p>No resources yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

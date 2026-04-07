@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ app_name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="{{ url_for('index') }}">{{ app_name }}</a>
+      <div class="nav-right">
+        <a href="{{ url_for('index') }}">Resources</a>
+        <a href="{{ url_for('questions_page') }}">Ask A Question</a>
+        {% if current_user %}
+          <a href="{{ url_for('logout') }}">Sign out</a>
+        {% elif google_enabled %}
+          <a class="btn ghost" href="{{ url_for('login_google') }}">Sign in with Google</a>
+        {% endif %}
+        {% if admin_visible %}
+          <a class="btn primary" href="{{ url_for('admin_panel') }}">Admin</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-wrap">
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% if msgs %}
+        <div class="flash-stack">
+          {% for cat, msg in msgs %}
+            <div class="flash {{ cat }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

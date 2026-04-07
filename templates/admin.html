@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-kicker">ADMIN PANEL</div>
+  <h1>Manage Resources</h1>
+  <p>Upload files, add links, and review submissions.</p>
+</section>
+
+<section class="grid-two">
+  <div class="card">
+    <h2>Upload File</h2>
+    <form method="post" action="{{ url_for('admin_upload_file') }}" enctype="multipart/form-data" class="form-grid">
+      <label>Title<input type="text" name="title" required></label>
+      <label>Category<input type="text" name="category" value="General"></label>
+      <label class="wide">Description<textarea name="description" rows="4"></textarea></label>
+      <label class="wide">File<input type="file" name="file" required></label>
+      <button class="btn primary" type="submit" {% if not github_enabled %}disabled{% endif %}>Upload</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Add Link</h2>
+    <form method="post" action="{{ url_for('admin_add_link') }}" class="form-grid">
+      <label>Title<input type="text" name="title" required></label>
+      <label>Category<input type="text" name="category" value="General"></label>
+      <label class="wide">URL<input type="url" name="url" required></label>
+      <label class="wide">Description<textarea name="description" rows="4"></textarea></label>
+      <button class="btn primary" type="submit">Publish</button>
+    </form>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Resources</h2>
+  {% for item in resources %}
+    <article class="resource-row">
+      <div>
+        <h3>{{ item.title }}</h3>
+        <div class="meta">{{ item.resource_type|upper }} | {{ item.category or 'General' }}</div>
+      </div>
+      <div class="actions">
+        <form method="post" action="{{ url_for('admin_delete_resource', resource_id=item.id) }}">
+          <button class="btn danger" type="submit">Delete</button>
+        </form>
+      </div>
+    </article>
+  {% else %}
+    <p>No resources yet.</p>
+  {% endfor %}
+</section>
+
+<section class="grid-two">
+  <div class="card">
+    <h2>Messages</h2>
+    {% for m in messages %}
+      <div class="line-item"><strong>{{ m.name }}</strong> ({{ m.email }}): {{ m.message }}</div>
+    {% else %}
+      <p>No messages.</p>
+    {% endfor %}
+  </div>
+  <div class="card">
+    <h2>Google Signups</h2>
+    {% for s in signups %}
+      <div class="line-item">{{ s.full_name or 'User' }} ({{ s.email }})</div>
+    {% else %}
+      <p>No signups.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
