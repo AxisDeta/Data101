@@ -58,7 +58,9 @@
 <div id="aiModal" class="ai-modal" style="display:none;">
   <div class="ai-modal-card">
     <h3 id="aiTitle">Ask AI</h3>
-    <div id="aiOutput" class="ai-output">Ask a question about this resource.</div>
+    <div id="aiChat" class="ai-chat-window">
+      <div class="chat-msg ai">Ask a question about this resource.</div>
+    </div>
     <textarea id="aiInput" rows="4" placeholder="What should I learn first from this resource?"></textarea>
     <div class="actions">
       <button id="aiSend" class="btn primary" type="button">Ask</button>
@@ -71,17 +73,25 @@
   (() => {
     const modal = document.getElementById("aiModal");
     const title = document.getElementById("aiTitle");
-    const output = document.getElementById("aiOutput");
+    const chat = document.getElementById("aiChat");
     const input = document.getElementById("aiInput");
     const send = document.getElementById("aiSend");
     const closeBtn = document.getElementById("aiClose");
     let activeId = null;
+    const appendMsg = (role, text) => {
+      const div = document.createElement("div");
+      div.className = `chat-msg ${role}`;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    };
 
     document.querySelectorAll(".ask-ai-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         activeId = Number(btn.dataset.id || 0);
         title.textContent = `Ask AI: ${btn.dataset.title || "Resource"}`;
-        output.textContent = "Ask a question about this resource.";
+        chat.innerHTML = "";
+        appendMsg("ai", "Ask a question about this resource.");
         input.value = "";
         modal.style.display = "flex";
       });
@@ -93,7 +103,9 @@
     send?.addEventListener("click", async () => {
       const query = (input.value || "").trim();
       if (!activeId || !query) return;
-      output.textContent = "Thinking...";
+      appendMsg("human", query);
+      input.value = "";
+      appendMsg("ai", "Thinking...");
       try {
         const resp = await fetch("{{ url_for('ask_ai_resource') }}", {
           method: "POST",
@@ -101,9 +113,13 @@
           body: JSON.stringify({ resource_id: activeId, query })
         });
         const data = await resp.json();
-        output.textContent = data.response || data.error || "No response.";
+        const last = chat.querySelector(".chat-msg.ai:last-child");
+        if (last && last.textContent === "Thinking...") last.remove();
+        appendMsg("ai", data.response || data.error || "No response.");
       } catch {
-        output.textContent = "AI request failed. Please try again.";
+        const last = chat.querySelector(".chat-msg.ai:last-child");
+        if (last && last.textContent === "Thinking...") last.remove();
+        appendMsg("ai", "AI request failed. Please try again.");
       }
     });
   })();

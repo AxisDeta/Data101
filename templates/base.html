@@ -17,6 +17,9 @@
         <a href="{{ url_for('index') }}">Resources</a>
         <a href="{{ url_for('questions_page') }}">Ask A Question</a>
         {% if current_user %}
+          {% if user_avatar %}
+            <span class="avatar" style="background: {{ user_avatar.color }};">{{ user_avatar.initial }}</span>
+          {% endif %}
           <a href="{{ url_for('logout') }}">Sign out</a>
         {% elif google_enabled %}
           <a class="google-btn" href="{{ url_for('login_google') }}">

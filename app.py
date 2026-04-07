@@ -131,11 +131,16 @@ class MySQLStore:
                     github_path TEXT,
                     view_url TEXT,
                     download_url TEXT,
+                    ai_context MEDIUMTEXT,
                     created_by VARCHAR(120),
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
                 """
             )
+            try:
+                cur.execute("ALTER TABLE datahub_resources ADD COLUMN ai_context MEDIUMTEXT")
+            except Exception:
+                pass
             cur.execute(
                 """
                 CREATE TABLE IF NOT EXISTS datahub_google_signups (
@@ -355,11 +360,24 @@ def create_app() -> Flask:
         email = str(user.get("email") or "").strip().lower()
         return email in settings.admin_email_set
 
+    def user_avatar() -> dict[str, str] | None:
+        user = current_user()
+        if not user:
+            return None
+        raw = str(user.get("name") or user.get("email") or "").strip()
+        if not raw:
+            return None
+        initial = raw[0].upper()
+        palette = ["#f97316", "#2563eb", "#0f766e", "#7c3aed", "#dc2626", "#0891b2"]
+        idx = sum(ord(ch) for ch in raw.lower()) % len(palette)
+        return {"initial": initial, "color": palette[idx]}
+
     @app.context_processor
     def ctx():
         return {
             "app_name": settings.app_name,
             "current_user": current_user(),
+            "user_avatar": user_avatar(),
             "admin_visible": can_see_admin(),
             "google_enabled": settings.google_enabled,
             "gemini_enabled": settings.gemini_enabled,
@@ -424,12 +442,30 @@ QUESTION:
         if not resource:
             return {"error": "Resource not found."}, 404
 
+        related_rows = db.query_all(
+            """
+            SELECT title, description, resource_type, external_url, view_url, download_url
+            FROM datahub_resources
+            WHERE id <> %s AND category = %s
+            ORDER BY created_at DESC
+            LIMIT 5
+            """,
+            (resource_id, resource.get("category") or ""),
+        )
+        related_text = "\n".join(
+            [
+                f"- {r.get('title','')} ({r.get('resource_type','')}): {r.get('description','') or ''} {r.get('external_url') or r.get('view_url') or r.get('download_url') or ''}"
+                for r in related_rows
+            ]
+        )
         context = (
             f"Title: {resource.get('title','')}\n"
             f"Type: {resource.get('resource_type','')}\n"
             f"Category: {resource.get('category','')}\n"
             f"Description: {resource.get('description','')}\n"
+            f"AI Notes: {resource.get('ai_context','')}\n"
             f"Link: {resource.get('external_url') or resource.get('view_url') or ''}\n"
+            f"Related resources:\n{related_text}\n"
         )
         answer = ask_ai_model(context, query)
         return {"response": answer}
@@ -592,16 +628,17 @@ QUESTION:
         description = request.form.get("description", "").strip()
         category = request.form.get("category", "").strip() or "General"
         link_url = request.form.get("url", "").strip()
+        ai_context = request.form.get("ai_context", "").strip()
         if not (title and link_url):
             flash("Title and URL are required.", "warning")
             return redirect(url_for("admin_panel"))
         db.execute(
             """
             INSERT INTO datahub_resources
-            (title, description, resource_type, category, external_url, view_url, download_url, created_by)
-            VALUES (%s, %s, 'link', %s, %s, %s, %s, %s)
+            (title, description, resource_type, category, external_url, view_url, download_url, ai_context, created_by)
+            VALUES (%s, %s, 'link', %s, %s, %s, %s, %s, %s)
             """,
-            (title, description, category, link_url, link_url, link_url, settings.admin_username),
+            (title, description, category, link_url, link_url, link_url, ai_context, settings.admin_username),
         )
         flash("Link published.", "success")
         return redirect(url_for("admin_panel"))
@@ -620,6 +657,7 @@ QUESTION:
         title = request.form.get("title", "").strip()
         description = request.form.get("description", "").strip()
         category = request.form.get("category", "").strip() or "General"
+        ai_context = request.form.get("ai_context", "").strip()
         file_obj = request.files.get("file")
         if not title or not file_obj or not file_obj.filename:
             flash("Title and file are required.", "warning")
@@ -630,8 +668,8 @@ QUESTION:
             db.execute(
                 """
                 INSERT INTO datahub_resources
-                (title, description, resource_type, category, file_name, file_size, mime_type, github_path, view_url, download_url, created_by)
-                VALUES (%s, %s, 'file', %s, %s, %s, %s, %s, %s, %s, %s)
+                (title, description, resource_type, category, file_name, file_size, mime_type, github_path, view_url, download_url, ai_context, created_by)
+                VALUES (%s, %s, 'file', %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 """,
                 (
                     title,
@@ -643,6 +681,7 @@ QUESTION:
                     result["repo_path"],
                     result["view_url"],
                     result["download_url"],
+                    ai_context,
                     settings.admin_username,
                 ),
             )
@@ -696,6 +735,7 @@ QUESTION:
         title = request.form.get("title", "").strip()
         description = request.form.get("description", "").strip()
         category = request.form.get("category", "").strip() or "General"
+        ai_context = request.form.get("ai_context", "").strip()
         if not title:
             flash("Title is required.", "warning")
             return redirect(url_for("admin_edit_resource", resource_id=resource_id))
@@ -709,10 +749,10 @@ QUESTION:
             db.execute(
                 """
                 UPDATE datahub_resources
-                SET title=%s, description=%s, category=%s, external_url=%s, view_url=%s, download_url=%s
+                SET title=%s, description=%s, category=%s, external_url=%s, view_url=%s, download_url=%s, ai_context=%s
                 WHERE id=%s
                 """,
-                (title, description, category, link_url, link_url, link_url, resource_id),
+                (title, description, category, link_url, link_url, link_url, ai_context, resource_id),
             )
             flash("Link updated.", "success")
             return redirect(url_for("admin_panel"))
@@ -733,7 +773,7 @@ QUESTION:
                     """
                     UPDATE datahub_resources
                     SET title=%s, description=%s, category=%s, file_name=%s, file_size=%s, mime_type=%s,
-                        github_path=%s, view_url=%s, download_url=%s
+                        github_path=%s, view_url=%s, download_url=%s, ai_context=%s
                     WHERE id=%s
                     """,
                     (
@@ -746,6 +786,7 @@ QUESTION:
                         uploaded["repo_path"],
                         uploaded["view_url"],
                         uploaded["download_url"],
+                        ai_context,
                         resource_id,
                     ),
                 )
@@ -756,8 +797,8 @@ QUESTION:
                 return redirect(url_for("admin_edit_resource", resource_id=resource_id))
 
         db.execute(
-            "UPDATE datahub_resources SET title=%s, description=%s, category=%s WHERE id=%s",
-            (title, description, category, resource_id),
+            "UPDATE datahub_resources SET title=%s, description=%s, category=%s, ai_context=%s WHERE id=%s",
+            (title, description, category, ai_context, resource_id),
         )
         flash("File resource metadata updated.", "success")
         return redirect(url_for("admin_panel"))

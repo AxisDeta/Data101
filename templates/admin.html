@@ -13,6 +13,7 @@
       <label>Title<input type="text" name="title" required></label>
       <label>Category<input type="text" name="category" value="General"></label>
       <label class="wide">Description<textarea name="description" rows="4"></textarea></label>
+      <label class="wide">AI Context / Notes<textarea name="ai_context" rows="4" placeholder="Extra context the AI can use for this resource (summary, prerequisites, caveats)."></textarea></label>
       <label class="wide">File<input type="file" name="file" required></label>
       <button class="btn primary" type="submit" {% if not github_enabled %}disabled{% endif %}>Upload</button>
     </form>
@@ -25,6 +26,7 @@
       <label>Category<input type="text" name="category" value="General"></label>
       <label class="wide">URL<input type="url" name="url" required></label>
       <label class="wide">Description<textarea name="description" rows="4"></textarea></label>
+      <label class="wide">AI Context / Notes<textarea name="ai_context" rows="4" placeholder="Extra context the AI can use for this resource (summary, prerequisites, caveats)."></textarea></label>
       <button class="btn primary" type="submit">Publish</button>
     </form>
   </div>

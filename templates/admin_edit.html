@@ -11,6 +11,7 @@
     <label>Title<input type="text" name="title" value="{{ resource.title or '' }}" required></label>
     <label>Category<input type="text" name="category" value="{{ resource.category or 'General' }}"></label>
     <label class="wide">Description<textarea name="description" rows="5">{{ resource.description or '' }}</textarea></label>
+    <label class="wide">AI Context / Notes<textarea name="ai_context" rows="5">{{ resource.ai_context or '' }}</textarea></label>
 
     {% if (resource.resource_type or '').lower() == 'link' %}
       <label class="wide">URL<input type="url" name="url" value="{{ resource.external_url or resource.view_url or '' }}" required></label>
