@@ -558,6 +558,102 @@ def create_app() -> Flask:
         flash("Resource deleted.", "success")
         return redirect(url_for("admin_panel"))
 
+    @app.get("/admin/resource/edit/<int:resource_id>")
+    def admin_edit_resource(resource_id: int):
+        if not can_see_admin() or not session.get("admin_ok"):
+            return redirect(url_for("admin_login"))
+        db = get_db()
+        if not db:
+            flash("Database unavailable.", "danger")
+            return redirect(url_for("admin_panel"))
+        resource = db.query_one("SELECT * FROM datahub_resources WHERE id=%s", (resource_id,))
+        if not resource:
+            flash("Resource not found.", "warning")
+            return redirect(url_for("admin_panel"))
+        return render_template("admin_edit.html", resource=resource, github_enabled=bool(github))
+
+    @app.post("/admin/resource/edit/<int:resource_id>")
+    def admin_edit_resource_submit(resource_id: int):
+        if not can_see_admin() or not session.get("admin_ok"):
+            return redirect(url_for("admin_login"))
+        db = get_db()
+        if not db:
+            flash("Database unavailable.", "danger")
+            return redirect(url_for("admin_panel"))
+        resource = db.query_one("SELECT * FROM datahub_resources WHERE id=%s", (resource_id,))
+        if not resource:
+            flash("Resource not found.", "warning")
+            return redirect(url_for("admin_panel"))
+
+        title = request.form.get("title", "").strip()
+        description = request.form.get("description", "").strip()
+        category = request.form.get("category", "").strip() or "General"
+        if not title:
+            flash("Title is required.", "warning")
+            return redirect(url_for("admin_edit_resource", resource_id=resource_id))
+
+        resource_type = (resource.get("resource_type") or "").lower()
+        if resource_type == "link":
+            link_url = request.form.get("url", "").strip()
+            if not link_url:
+                flash("URL is required for link resources.", "warning")
+                return redirect(url_for("admin_edit_resource", resource_id=resource_id))
+            db.execute(
+                """
+                UPDATE datahub_resources
+                SET title=%s, description=%s, category=%s, external_url=%s, view_url=%s, download_url=%s
+                WHERE id=%s
+                """,
+                (title, description, category, link_url, link_url, link_url, resource_id),
+            )
+            flash("Link updated.", "success")
+            return redirect(url_for("admin_panel"))
+
+        # File resources: update metadata and optionally replace file.
+        file_obj = request.files.get("file")
+        if file_obj and file_obj.filename:
+            if not github:
+                flash("GitHub uploads are not configured; cannot replace file.", "danger")
+                return redirect(url_for("admin_edit_resource", resource_id=resource_id))
+            try:
+                payload = file_obj.read()
+                uploaded = github.upload(file_obj.filename, payload)
+                old_path = str(resource.get("github_path") or "").strip()
+                if old_path:
+                    github.delete(old_path)
+                db.execute(
+                    """
+                    UPDATE datahub_resources
+                    SET title=%s, description=%s, category=%s, file_name=%s, file_size=%s, mime_type=%s,
+                        github_path=%s, view_url=%s, download_url=%s
+                    WHERE id=%s
+                    """,
+                    (
+                        title,
+                        description,
+                        category,
+                        file_obj.filename,
+                        len(payload),
+                        file_obj.mimetype or "application/octet-stream",
+                        uploaded["repo_path"],
+                        uploaded["view_url"],
+                        uploaded["download_url"],
+                        resource_id,
+                    ),
+                )
+                flash("File resource updated (file replaced).", "success")
+                return redirect(url_for("admin_panel"))
+            except Exception:
+                flash("Failed to replace file.", "danger")
+                return redirect(url_for("admin_edit_resource", resource_id=resource_id))
+
+        db.execute(
+            "UPDATE datahub_resources SET title=%s, description=%s, category=%s WHERE id=%s",
+            (title, description, category, resource_id),
+        )
+        flash("File resource metadata updated.", "success")
+        return redirect(url_for("admin_panel"))
+
     return app
 
 

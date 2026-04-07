@@ -39,6 +39,7 @@
         <div class="meta">{{ item.resource_type|upper }} | {{ item.category or 'General' }}</div>
       </div>
       <div class="actions">
+        <a class="btn ghost" href="{{ url_for('admin_edit_resource', resource_id=item.id) }}">Edit</a>
         <form method="post" action="{{ url_for('admin_delete_resource', resource_id=item.id) }}">
           <button class="btn danger" type="submit">Delete</button>
         </form>

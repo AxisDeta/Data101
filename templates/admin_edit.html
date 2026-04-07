@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-kicker">ADMIN | EDIT RESOURCE</div>
+  <h1>Edit Resource</h1>
+  <p>Update title, description, category, and content details.</p>
+</section>
+
+<section class="card narrow">
+  <form method="post" action="{{ url_for('admin_edit_resource_submit', resource_id=resource.id) }}" enctype="multipart/form-data" class="form-grid">
+    <label>Title<input type="text" name="title" value="{{ resource.title or '' }}" required></label>
+    <label>Category<input type="text" name="category" value="{{ resource.category or 'General' }}"></label>
+    <label class="wide">Description<textarea name="description" rows="5">{{ resource.description or '' }}</textarea></label>
+
+    {% if (resource.resource_type or '').lower() == 'link' %}
+      <label class="wide">URL<input type="url" name="url" value="{{ resource.external_url or resource.view_url or '' }}" required></label>
+    {% else %}
+      <div class="wide meta">Current file: {{ resource.file_name or 'N/A' }}</div>
+      <label class="wide">Replace File (optional)<input type="file" name="file" {% if not github_enabled %}disabled{% endif %}></label>
+    {% endif %}
+
+    <button class="btn primary" type="submit">Save Changes</button>
+    <a class="btn ghost" href="{{ url_for('admin_panel') }}">Cancel</a>
+  </form>
+</section>
+{% endblock %}
