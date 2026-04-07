@@ -57,14 +57,19 @@
 {% if gemini_enabled %}
 <div id="aiModal" class="ai-modal" style="display:none;">
   <div class="ai-modal-card">
-    <h3 id="aiTitle">Ask AI</h3>
-    <div id="aiChat" class="ai-chat-window">
-      <div class="chat-msg ai">Ask a question about this resource.</div>
+    <div class="ai-head">
+      <h3 id="aiTitle">Ask AI</h3>
+      <button id="aiClose" class="btn ghost ai-close-btn" type="button">Close</button>
     </div>
-    <textarea id="aiInput" rows="4" placeholder="What should I learn first from this resource?"></textarea>
-    <div class="actions">
+    <div id="aiChat" class="ai-chat-window">
+      <div class="chat-turn ai">
+        <div class="chat-role">AI</div>
+        <div class="chat-bubble">Ask a question about this resource.</div>
+      </div>
+    </div>
+    <textarea id="aiInput" rows="3" placeholder="What should I learn first from this resource?"></textarea>
+    <div class="ai-actions">
       <button id="aiSend" class="btn primary" type="button">Ask</button>
-      <button id="aiClose" class="btn ghost" type="button">Close</button>
     </div>
   </div>
 </div>
@@ -78,12 +83,38 @@
     const send = document.getElementById("aiSend");
     const closeBtn = document.getElementById("aiClose");
     let activeId = null;
-    const appendMsg = (role, text) => {
-      const div = document.createElement("div");
-      div.className = `chat-msg ${role}`;
-      div.textContent = text;
-      chat.appendChild(div);
+
+    const renderMessage = (text) => {
+      let formatted = String(text || "");
+      formatted = formatted.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      formatted = formatted.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      formatted = formatted.replace(/^\* (.+)$/gm, "<li>$1</li>");
+      formatted = formatted.replace(/(<li>.*<\/li>\n?)+/g, (m) => `<ul>${m}</ul>`);
+      formatted = formatted.replace(/\n/g, "<br>");
+      return formatted;
+    };
+
+    const appendMsg = (role, text, typing = false) => {
+      const turn = document.createElement("div");
+      turn.className = `chat-turn ${role}${typing ? " typing" : ""}`;
+
+      const roleEl = document.createElement("div");
+      roleEl.className = "chat-role";
+      roleEl.textContent = role === "human" ? "You" : "AI";
+
+      const bubble = document.createElement("div");
+      bubble.className = "chat-bubble";
+      if (typing) {
+        bubble.textContent = text;
+      } else {
+        bubble.innerHTML = renderMessage(text);
+      }
+
+      turn.appendChild(roleEl);
+      turn.appendChild(bubble);
+      chat.appendChild(turn);
       chat.scrollTop = chat.scrollHeight;
+      return turn;
     };
 
     document.querySelectorAll(".ask-ai-btn").forEach((btn) => {
@@ -105,7 +136,7 @@
       if (!activeId || !query) return;
       appendMsg("human", query);
       input.value = "";
-      appendMsg("ai", "Thinking...");
+      const typing = appendMsg("ai", "Thinking...", true);
       try {
         const resp = await fetch("{{ url_for('ask_ai_resource') }}", {
           method: "POST",
@@ -113,13 +144,18 @@
           body: JSON.stringify({ resource_id: activeId, query })
         });
         const data = await resp.json();
-        const last = chat.querySelector(".chat-msg.ai:last-child");
-        if (last && last.textContent === "Thinking...") last.remove();
+        if (typing) typing.remove();
         appendMsg("ai", data.response || data.error || "No response.");
       } catch {
-        const last = chat.querySelector(".chat-msg.ai:last-child");
-        if (last && last.textContent === "Thinking...") last.remove();
+        if (typing) typing.remove();
         appendMsg("ai", "AI request failed. Please try again.");
+      }
+    });
+
+    input?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        send?.click();
       }
     });
   })();
