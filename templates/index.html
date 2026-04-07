@@ -7,7 +7,25 @@
 </section>
 
 <section class="card">
+  <form method="get" action="{{ url_for('index') }}" class="form-grid">
+    <label>Search
+      <input type="text" name="q" value="{{ search_query or '' }}" placeholder="Try: airflow, mlops, feature engineering">
+    </label>
+    <label>Type
+      <select name="type">
+        <option value="all" {% if (search_type or 'all') == 'all' %}selected{% endif %}>All</option>
+        <option value="file" {% if search_type == 'file' %}selected{% endif %}>Files</option>
+        <option value="link" {% if search_type == 'link' %}selected{% endif %}>Links</option>
+      </select>
+    </label>
+    <button class="btn primary" type="submit">Search</button>
+    <a class="btn ghost" href="{{ url_for('index') }}">Reset</a>
+  </form>
+</section>
+
+<section class="card">
   <h2>Resources</h2>
+  <div class="meta">{{ resources|length }} result(s)</div>
   {% if resources %}
     {% for item in resources %}
       <article class="resource-row">

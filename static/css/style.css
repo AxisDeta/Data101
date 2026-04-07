@@ -87,7 +87,7 @@ p { color: var(--muted); }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
 .form-grid .wide { grid-column: 1 / -1; }
 label { font-family: "Syne", sans-serif; font-size: 0.9rem; color: #fff; display: grid; gap: 0.28rem; }
-input, textarea {
+input, textarea, select {
   width: 100%;
   border-radius: 10px;
   border: 1px solid var(--border);

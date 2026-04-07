@@ -353,11 +353,32 @@ def create_app() -> Flask:
 
     @app.get("/")
     def index():
+        q = request.args.get("q", "").strip()
+        rtype = request.args.get("type", "").strip().lower()
         resources: list[dict[str, Any]] = []
         db = get_db()
         if db:
-            resources = db.query_all("SELECT * FROM datahub_resources ORDER BY created_at DESC")
-        return render_template("index.html", resources=resources, google_enabled=settings.google_enabled)
+            where_parts: list[str] = []
+            params: list[Any] = []
+            if q:
+                where_parts.append("(title LIKE %s OR description LIKE %s OR category LIKE %s)")
+                like = f"%{q}%"
+                params.extend([like, like, like])
+            if rtype in {"file", "link"}:
+                where_parts.append("resource_type=%s")
+                params.append(rtype)
+            where_sql = f"WHERE {' AND '.join(where_parts)}" if where_parts else ""
+            resources = db.query_all(
+                f"SELECT * FROM datahub_resources {where_sql} ORDER BY created_at DESC",
+                tuple(params),
+            )
+        return render_template(
+            "index.html",
+            resources=resources,
+            google_enabled=settings.google_enabled,
+            search_query=q,
+            search_type=rtype or "all",
+        )
 
     @app.get("/questions")
     def questions_page():
