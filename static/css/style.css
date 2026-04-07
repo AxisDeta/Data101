@@ -28,6 +28,24 @@ body {
 .nav-right { display: flex; gap: 10px; align-items: center; }
 .nav-right a { color: var(--muted); text-decoration: none; font-family: "Syne", sans-serif; font-weight: 600; font-size: 0.95rem; }
 .nav-right a:hover { color: #fff; }
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  background: #ffffff;
+  color: #1f2937 !important;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+}
+.google-btn:hover {
+  background: #f8fafc;
+  color: #111827 !important;
+}
+.google-btn svg { display: block; }
 
 .main-wrap { padding: 22px 0 40px; }
 .hero {
