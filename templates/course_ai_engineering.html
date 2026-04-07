@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Engineering Transition Course ? From ML Engineering to Production AI Systems</title>
+<title>AI Engineering Transition Course - From ML Engineering to Production AI Systems</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -51,7 +51,7 @@
     z-index: 1;
   }
 
-  /* SIDEBAR */
+  /* ?"&mdash;? SIDEBAR ?"&mdash;? */
   .sidebar {
     width: 280px;
     flex-shrink: 0;
@@ -187,7 +187,7 @@
 
   .nav-item.done .nav-dot { background: var(--accent3); }
 
-  /* MAIN */
+  /* ?"&mdash;? MAIN ?"&mdash;? */
   .main {
     flex: 1;
     overflow-y: auto;
@@ -286,7 +286,7 @@
     text-transform: uppercase;
   }
 
-  /* MODULE */
+  /* ?"&mdash;? MODULE ?"&mdash;? */
   .module {
     display: none;
     padding: 48px 60px 64px;
@@ -426,7 +426,7 @@
 
   .card:hover::before { opacity: 1; }
 
-  .card-icon { font-size: 22px; margin-bottom: 10px; }
+  .card-icon { font-size: 22px; margin-bottom: 10px; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
 
   .card-title {
     font-family: 'Syne', sans-serif;
@@ -503,7 +503,7 @@
     align-items: flex-start;
   }
 
-  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
 
   .callout-body { flex: 1; }
 
@@ -556,7 +556,7 @@
 
   .pipe-box:hover { border-color: var(--accent); }
 
-  .pipe-box-icon { font-size: 20px; margin-bottom: 4px; }
+  .pipe-box-icon { font-size: 20px; margin-bottom: 4px; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
 
   .pipe-box-label {
     font-family: 'Syne', sans-serif;
@@ -702,7 +702,7 @@
     margin-bottom: 10px;
   }
 
-  .ov-icon { font-size: 28px; margin-bottom: 10px; }
+  .ov-icon { font-size: 28px; margin-bottom: 10px; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
 
   .ov-title {
     font-family: 'Syne', sans-serif;
@@ -770,7 +770,7 @@
   }
 
   ul.styled li::before {
-    content: '?';
+    content: '&rarr;';
     color: var(--accent);
     flex-shrink: 0;
     font-family: 'Syne', sans-serif;
@@ -814,7 +814,7 @@
     <div class="nav-section">
       <div class="nav-section-label">Overview</div>
       <div class="nav-item active" onclick="showModule('home', this)">
-        <span class="nav-num">?</span>
+        <span class="nav-num">?O,</span>
         <span class="nav-text">Course Home</span>
         <span class="nav-dot"></span>
       </div>
@@ -848,7 +848,7 @@
       </div>
       <div class="nav-item" id="nav-m5" onclick="showModule('m5', this)">
         <span class="nav-num">05</span>
-        <span class="nav-text">RAG — Retrieval Augmented Generation</span>
+        <span class="nav-text">RAG &mdash; Retrieval Augmented Generation</span>
         <span class="nav-dot"></span>
       </div>
     </div>
@@ -882,8 +882,7 @@
         <div class="hero-tag">Your learning path</div>
         <h1>Modern AI & NLP<br><em>from the ground up</em></h1>
         <p class="hero-sub">
-          You already build ML systems. This course bridges the gap to AI Engineering - covering what you need to design, ship, and operate production-grade LLM applications, copilots, and retrieval systems.
-        </p>
+          You already build ML systems. This course bridges the gap to AI Engineering - covering what you need to design, ship, and operate production-grade LLM applications, copilots, and retrieval systems.</p>
         <div class="hero-stats">
           <div class="hero-stat">
             <span class="stat-num">8</span>
@@ -905,58 +904,58 @@
         <div class="overview-grid">
           <div class="overview-card" onclick="showModule('m1', document.getElementById('nav-m1'))">
             <div class="ov-num">MODULE 01</div>
-            <div class="ov-icon">&#9679;</div>
+            <div class="ov-icon">&#x1F4DA;</div>
             <div class="ov-title">How Modern LLMs Work</div>
             <div class="ov-desc">Transformers, attention, pre-training vs fine-tuning. Why LLMs are different from the NLP you knew.</div>
             <div class="ov-accent" style="background: var(--accent);"></div>
           </div>
           <div class="overview-card" onclick="showModule('m2', document.getElementById('nav-m2'))">
             <div class="ov-num">MODULE 02</div>
-            <div class="ov-icon">&#9679;</div>
+            <div class="ov-icon">&#x1F4DA;</div>
             <div class="ov-title">Tokens, Embeddings & Vector Space</div>
             <div class="ov-desc">The math behind meaning. How text becomes vectors and why that enables semantic search.</div>
             <div class="ov-accent" style="background: var(--accent2);"></div>
           </div>
           <div class="overview-card" onclick="showModule('m3', document.getElementById('nav-m3'))">
             <div class="ov-num">MODULE 03</div>
-            <div class="ov-icon">&#9679;</div>
+            <div class="ov-icon">&#x1F4DA;</div>
             <div class="ov-title">Prompt Engineering</div>
             <div class="ov-desc">System prompts, few-shot learning, chain-of-thought, structured output extraction.</div>
             <div class="ov-accent" style="background: var(--accent3);"></div>
           </div>
           <div class="overview-card" onclick="showModule('m4', document.getElementById('nav-m4'))">
             <div class="ov-num">MODULE 04</div>
-            <div class="ov-icon">&#9679;</div>
+            <div class="ov-icon">&#x1F4DA;</div>
             <div class="ov-title">Vector Databases & Semantic Search</div>
             <div class="ov-desc">Pinecone, pgvector, Weaviate. How to store and query embeddings at scale.</div>
             <div class="ov-accent" style="background: var(--accent4);"></div>
           </div>
           <div class="overview-card" onclick="showModule('m5', document.getElementById('nav-m5'))">
             <div class="ov-num">MODULE 05</div>
-            <div class="ov-icon">&#9679;</div>
-            <div class="ov-title">RAG — Retrieval Augmented Generation</div>
+            <div class="ov-icon">&#x1F4DA;</div>
+            <div class="ov-title">RAG &mdash; Retrieval Augmented Generation</div>
             <div class="ov-desc">The most important pattern in LLM apps. Connect your LLM to your own data.</div>
             <div class="ov-accent" style="background: var(--accent);"></div>
           </div>
           <div class="overview-card" onclick="showModule('m6', document.getElementById('nav-m6'))">
             <div class="ov-num">MODULE 06</div>
-            <div class="ov-icon">&#9679;</div>
+            <div class="ov-icon">&#x1F4DA;</div>
             <div class="ov-title">LLM APIs & Structured Outputs</div>
             <div class="ov-desc">Getting reliable JSON from LLMs, function calling, output parsing, error handling.</div>
             <div class="ov-accent" style="background: var(--accent2);"></div>
           </div>
           <div class="overview-card" onclick="showModule('m7', document.getElementById('nav-m7'))">
             <div class="ov-num">MODULE 07</div>
-            <div class="ov-icon">&#9679;</div>
+            <div class="ov-icon">&#x1F4DA;</div>
             <div class="ov-title">LLM Agents & Tool Use</div>
             <div class="ov-desc">How agents reason and use tools. ReAct pattern, function calling, multi-step pipelines.</div>
             <div class="ov-accent" style="background: var(--accent3);"></div>
           </div>
           <div class="overview-card" onclick="showModule('m8', document.getElementById('nav-m8'))">
             <div class="ov-num">MODULE 08</div>
-            <div class="ov-icon">&#9679;</div>
+            <div class="ov-icon">&#x1F4DA;</div>
             <div class="ov-title">Putting It All Together</div>
-            <div class="ov-desc">Architecture blueprint for your AI engineering platform natural language search. Full stack walkthrough.</div>
+            <div class="ov-desc">Architecture blueprint for your e-commerce natural language search. Full stack walkthrough.</div>
             <div class="ov-accent" style="background: var(--accent4);"></div>
           </div>
         </div>
@@ -965,12 +964,12 @@
           <div class="section-title">Your knowledge baseline</div>
           <div class="split">
             <div class="card">
-              <div class="card-icon">?</div>
+              <div class="card-icon">&#x2728;</div>
               <div class="card-title">You already know</div>
               <div class="card-text">Traditional ML/DL (CNNs, RNNs, gradient descent), calling LLM APIs, Python, basic NLP preprocessing (tokenization, embeddings at a high level)</div>
             </div>
             <div class="card">
-              <div class="card-icon">&#9679;</div>
+              <div class="card-icon">&#x2728;</div>
               <div class="card-title">This course covers</div>
               <div class="card-text">Transformers & attention, modern embeddings, prompt engineering, vector search, RAG, structured output parsing, agents, and production architecture</div>
             </div>
@@ -982,9 +981,9 @@
     <!-- MODULE 1 -->
     <div id="m1" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(108,99,255,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(108,99,255,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 01 - Foundations</div>
+          <div class="module-num">Module 01 &mdash; Foundations</div>
           <div class="module-title">How Modern LLMs Work</div>
           <div class="module-desc">From "bag of words" NLP to Transformers. Understanding the architecture that changed everything.</div>
         </div>
@@ -992,7 +991,7 @@
 
       <div class="section">
         <div class="section-title">The Paradigm Shift</div>
-        <p>Traditional NLP (what you may know) relied on handcrafted feature engineering, rule-based systems, and shallow ML models like Naive Bayes or LSTMs. Modern LLMs are built on a single architecture - the <strong>Transformer</strong> - and trained on internet-scale text to develop general language understanding.</p>
+        <p>Traditional NLP (what you may know) relied on handcrafted feature engineering, rule-based systems, and shallow ML models like Naive Bayes or LSTMs. Modern LLMs are built on a single architecture &mdash; the <strong>Transformer</strong> &mdash; and trained on internet-scale text to develop general language understanding.</p>
         <p>The key difference: instead of training a separate model for each NLP task (sentiment, NER, translation), an LLM is one giant model that can do all of them via prompting. No task-specific training required.</p>
       </div>
 
@@ -1000,32 +999,32 @@
         <div class="section-title">The Transformer Architecture</div>
         <div class="cards">
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Self-Attention</div>
-            <div class="card-text">Each token looks at every other token in the sequence and computes a weighted "relevance" score. This is how the model understands context - "bank" means different things near "river" vs "money".</div>
+            <div class="card-text">Each token looks at every other token in the sequence and computes a weighted "relevance" score. This is how the model understands context &mdash; "bank" means different things near "river" vs "money".</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Multi-Head Attention</div>
-            <div class="card-text">Multiple attention operations run in parallel, each learning different types of relationships - syntactic, semantic, co-reference. The outputs are combined.</div>
+            <div class="card-text">Multiple attention operations run in parallel, each learning different types of relationships &mdash; syntactic, semantic, co-reference. The outputs are combined.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Positional Encoding</div>
             <div class="card-text">Unlike RNNs, Transformers process all tokens in parallel. Positional encodings inject information about token order into the representations.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Feed-Forward Layers</div>
             <div class="card-text">After attention, each token goes through a feed-forward network independently. This is where "facts" and learned knowledge are thought to be stored.</div>
           </div>
         </div>
 
         <div class="callout info">
-          <span class="callout-icon">&#9679;</span>
+          <span class="callout-icon">&#x1F4A1;</span>
           <div class="callout-body">
             <div class="callout-title">Why this matters for your AI engineering path</div>
-            <div class="callout-text">You don't need to implement a Transformer. But understanding attention helps you understand why LLMs can parse complex queries like "affordable gaming laptops with good battery life but not bulky" - it weighs all those constraints simultaneously.</div>
+            <div class="callout-text">You don't need to implement a Transformer. But understanding attention helps you understand why LLMs can parse complex queries like "affordable gaming laptops with good battery life but not bulky" &mdash; it weighs all those constraints simultaneously.</div>
           </div>
         </div>
       </div>
@@ -1052,7 +1051,7 @@
               <td>Fine-tuning</td>
               <td>Further train a pre-trained model on domain-specific data</td>
               <td>When you need specific behavior/style not achievable via prompting</td>
-              <td>$10s-$1000s</td>
+              <td>$10s&mdash;$1000s</td>
             </tr>
             <tr>
               <td>Prompting</td>
@@ -1069,10 +1068,10 @@
           </tbody>
         </table>
         <div class="callout tip">
-          <span class="callout-icon">?</span>
+          <span class="callout-icon">&#x1F4A1;</span>
           <div class="callout-body">
-            <div class="callout-title">For your AI engineering platform search</div>
-            <div class="callout-text">You'll use <strong>Prompting</strong> (to extract intent from queries) and <strong>RAG-like retrieval</strong> (to match resources). No fine-tuning needed to start.</div>
+            <div class="callout-title">For your e-commerce search</div>
+            <div class="callout-text">You'll use <strong>Prompting</strong> (to extract intent from queries) and <strong>RAG-like retrieval</strong> (to match products). No fine-tuning needed to start.</div>
           </div>
         </div>
       </div>
@@ -1087,22 +1086,22 @@
           <span class="tag pink">Mistral / Mixtral (open source)</span>
           <span class="tag yellow">Embedding models: text-embedding-3, all-MiniLM</span>
         </div>
-        <p>For <strong>intent extraction</strong> (parsing user queries), any modern model works. For <strong>embeddings</strong> (vectorizing resources), you'll use a dedicated embedding model - different from a chat model.</p>
+        <p>For <strong>intent extraction</strong> (parsing user queries), any modern model works. For <strong>embeddings</strong> (vectorizing products), you'll use a dedicated embedding model &mdash; different from a chat model.</p>
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" disabled>? Previous</button>
-        <button class="done-btn" id="done-m1" onclick="markDone('m1')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('m2', document.getElementById('nav-m2'))">Next: Tokens & Embeddings ?</button>
+        <button class="nav-btn" disabled>&larr; Previous</button>
+        <button class="done-btn" id="done-m1" onclick="markDone('m1')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('m2', document.getElementById('nav-m2'))">Next: Tokens & Embeddings &rarr;</button>
       </div>
     </div>
 
     <!-- MODULE 2 -->
     <div id="m2" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(255,101,132,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(255,101,132,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 02 - Foundations</div>
+          <div class="module-num">Module 02 &mdash; Foundations</div>
           <div class="module-title">Tokens, Embeddings & Vector Space</div>
           <div class="module-desc">The mathematical foundation of modern NLP. How text becomes numbers that capture meaning.</div>
         </div>
@@ -1110,17 +1109,17 @@
 
       <div class="section">
         <div class="section-title">Tokenization</div>
-        <p>An LLM doesn't read words - it reads <strong>tokens</strong>. Tokens are chunks of text produced by a tokenizer (usually BPE - Byte Pair Encoding). Common words become single tokens; rare words split into multiple.</p>
+        <p>An LLM doesn't read words &mdash; it reads <strong>tokens</strong>. Tokens are chunks of text produced by a tokenizer (usually BPE &mdash; Byte Pair Encoding). Common words become single tokens; rare words split into multiple.</p>
         <div class="code-block">
           <div class="code-header">
-            <span class="code-lang">Example - Tokenization</span>
+            <span class="code-lang">Example &mdash; Tokenization</span>
           </div>
           <pre><span class="cm"># "laptops below ksh 1000" might tokenize as:</span>
 [<span class="str">"lap"</span>, <span class="str">"tops"</span>, <span class="str">" below"</span>, <span class="str">" ks"</span>, <span class="str">"h"</span>, <span class="str">" 1000"</span>]
 <span class="cm"># ~6 tokens. Why this matters: you're billed per token,
 # and context windows are measured in tokens (e.g. 128k tokens).</span></pre>
         </div>
-        <p><strong>Why it matters:</strong> Your resource descriptions and user queries are all tokenized. Long descriptions cost more to process. Context window limits (how much text the LLM can "see" at once) are measured in tokens.</p>
+        <p><strong>Why it matters:</strong> Your product descriptions and user queries are all tokenized. Long descriptions cost more to process. Context window limits (how much text the LLM can "see" at once) are measured in tokens.</p>
       </div>
 
       <div class="section">
@@ -1128,19 +1127,19 @@
         <p>An embedding is a <strong>dense vector</strong> (a list of floats, e.g., 1536 numbers) that represents the meaning of a piece of text. Texts with similar meanings have vectors that are close together in this high-dimensional space.</p>
         <div class="cards">
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Semantic similarity</div>
-            <div class="card-text">"Budget laptop" and "affordable notebook computer" will have very similar embedding vectors - even though no words match. This is the power over keyword search.</div>
+            <div class="card-text">"Budget laptop" and "affordable notebook computer" will have very similar embedding vectors &mdash; even though no words match. This is the power over keyword search.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Cosine similarity</div>
-            <div class="card-text">The standard way to compare embeddings. Measures the angle between two vectors. Returns a score from -1 to 1; higher = more similar. Used to find matching resources.</div>
+            <div class="card-text">The standard way to compare embeddings. Measures the angle between two vectors. Returns a score from -1 to 1; higher = more similar. Used to find matching products.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Embedding models</div>
-            <div class="card-text">Separate from chat models. Examples: OpenAI's text-embedding-3-small, Cohere embed, or open-source sentence-transformers. These map text ? vector.</div>
+            <div class="card-text">Separate from chat models. Examples: OpenAI's text-embedding-3-small, Cohere embed, or open-source sentence-transformers. These map text &rarr; vector.</div>
           </div>
         </div>
       </div>
@@ -1149,7 +1148,7 @@
         <div class="section-title">Practical Code</div>
         <div class="code-block">
           <div class="code-header">
-            <span class="code-lang">Python - Generating Embeddings</span>
+            <span class="code-lang">Python &mdash; Generating Embeddings</span>
             <button class="code-copy">copy</button>
           </div>
           <pre><span class="kw">from</span> openai <span class="kw">import</span> <span class="cls">OpenAI</span>
@@ -1178,44 +1177,44 @@ score = <span class="fn">cosine_similarity</span>(query_vec, product_vec)
       </div>
 
       <div class="section">
-        <div class="section-title">What to Embed in AI engineering platform</div>
-        <p>For resource search, you embed your resource catalog <strong>once</strong> (offline) and store the vectors. At query time, you embed the user's query and find the closest resource vectors.</p>
+        <div class="section-title">What to Embed in E-Commerce</div>
+        <p>For product search, you embed your product catalog <strong>once</strong> (offline) and store the vectors. At query time, you embed the user's query and find the closest product vectors.</p>
         <div class="callout warn">
-          <span class="callout-icon">&#9679;</span>
+          <span class="callout-icon">&#x1F4A1;</span>
           <div class="callout-body">
-            <div class="callout-title">What to embed per resource</div>
-            <div class="callout-text">Don't just embed the resource name. Embed a rich text combining: <strong>name + description + category + key specs</strong>. The richer the text, the better the embedding captures the resource's meaning. Price and rating are better handled as metadata filters, not embedded.</div>
+            <div class="callout-title">What to embed per product</div>
+            <div class="callout-text">Don't just embed the product name. Embed a rich text combining: <strong>name + description + category + key specs</strong>. The richer the text, the better the embedding captures the product's meaning. Price and rating are better handled as metadata filters, not embedded.</div>
           </div>
         </div>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">Python - resource Embedding Strategy</span></div>
-          <pre><span class="kw">def</span> <span class="fn">product_to_text</span>(resource: <span class="cls">dict</span>) -> <span class="cls">str</span>:
-    <span class="str">"""Convert a resource dict into rich text for embedding."""</span>
+          <div class="code-header"><span class="code-lang">Python &mdash; Product Embedding Strategy</span></div>
+          <pre><span class="kw">def</span> <span class="fn">product_to_text</span>(product: <span class="cls">dict</span>) -> <span class="cls">str</span>:
+    <span class="str">"""Convert a product dict into rich text for embedding."""</span>
     <span class="kw">return</span> <span class="str">f"""</span>
-<span class="str">    {resource['name']} - {resource['category']}</span>
-<span class="str">    {resource['description']}</span>
-<span class="str">    Key specs: {', '.join(resource['specs'])}</span>
-<span class="str">    Brand: {resource['brand']}</span>
+<span class="str">    {product['name']} &mdash; {product['category']}</span>
+<span class="str">    {product['description']}</span>
+<span class="str">    Key specs: {', '.join(product['specs'])}</span>
+<span class="str">    Brand: {product['brand']}</span>
 <span class="str">    """</span>.<span class="fn">strip</span>()
 
 <span class="cm"># Then embed this combined text, NOT just the name</span>
-product_vec = <span class="fn">embed</span>(<span class="fn">product_to_text</span>(resource))</pre>
+product_vec = <span class="fn">embed</span>(<span class="fn">product_to_text</span>(product))</pre>
         </div>
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" onclick="showModule('m1', document.getElementById('nav-m1'))">? How LLMs Work</button>
-        <button class="done-btn" id="done-m2" onclick="markDone('m2')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('m3', document.getElementById('nav-m3'))">Next: Prompt Engineering ?</button>
+        <button class="nav-btn" onclick="showModule('m1', document.getElementById('nav-m1'))">&larr; How LLMs Work</button>
+        <button class="done-btn" id="done-m2" onclick="markDone('m2')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('m3', document.getElementById('nav-m3'))">Next: Prompt Engineering &rarr;</button>
       </div>
     </div>
 
     <!-- MODULE 3 -->
     <div id="m3" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(67,233,123,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(67,233,123,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 03 - Foundations</div>
+          <div class="module-num">Module 03 &mdash; Foundations</div>
           <div class="module-title">Prompt Engineering</div>
           <div class="module-desc">The craft of reliably extracting structured, useful behavior from LLMs through text instructions.</div>
         </div>
@@ -1225,22 +1224,22 @@ product_vec = <span class="fn">embed</span>(<span class="fn">product_to_text</sp
         <div class="section-title">The Anatomy of a Prompt</div>
         <div class="cards">
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">System Prompt</div>
             <div class="card-text">Defines the model's role, persona, output format, and constraints. Runs before the user message. This is where you tell it "You are a query parser. Return only JSON."</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">User Message</div>
-            <div class="card-text">The actual input - in your case, the customer's natural language query. e.g. "show me laptops below ksh 50000 with good reviews".</div>
+            <div class="card-text">The actual input &mdash; in your case, the customer's natural language query. e.g. "show me laptops below ksh 50000 with good reviews".</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Few-Shot Examples</div>
             <div class="card-text">Showing the model 2-5 examples of input/output pairs dramatically improves reliability. Include examples of edge cases.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Chain-of-Thought</div>
             <div class="card-text">Adding "Think step by step" or showing reasoning in examples improves accuracy on complex tasks. The model's internal reasoning becomes part of the output.</div>
           </div>
@@ -1248,12 +1247,12 @@ product_vec = <span class="fn">embed</span>(<span class="fn">product_to_text</sp
       </div>
 
       <div class="section">
-        <div class="section-title">Query Parsing - The Core LLM Job in Your App</div>
+        <div class="section-title">Query Parsing &mdash; The Core LLM Job in Your App</div>
         <p>Your LLM's primary job is to take a messy natural language query and return a clean, structured JSON object that your search engine can use. Here's how to engineer that prompt:</p>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">Python - Intent Extraction Prompt</span><button class="code-copy">copy</button></div>
+          <div class="code-header"><span class="code-lang">Python &mdash; Intent Extraction Prompt</span><button class="code-copy">copy</button></div>
           <pre>SYSTEM_PROMPT = <span class="str">"""
-You are a resource search query parser for an AI engineering platform site.
+You are a product search query parser for an e-commerce site.
 Extract structured search intent from the user's query.
 
 Return ONLY valid JSON with these fields:
@@ -1262,7 +1261,7 @@ Return ONLY valid JSON with these fields:
 - min_price: number or null
 - min_rating: number or null (1-5 scale)
 - brands: list of strings or []
-- keywords: list of important resource attributes
+- keywords: list of important product attributes
 - sort_by: one of ["relevance", "price_asc", "price_desc", "rating"] 
 
 Examples:
@@ -1300,13 +1299,13 @@ Return ONLY the JSON object. No explanation. No markdown.
           <li><strong>Be explicit about output format.</strong> "Return ONLY valid JSON" beats "return JSON". Add "No explanation. No markdown fences."</li>
           <li><strong>Temperature = 0 for structured tasks.</strong> For parsing/extraction, you want deterministic outputs. Use temperature > 0 only for creative tasks.</li>
           <li><strong>Use few-shot examples for edge cases.</strong> Cover ambiguous queries, missing fields, and multi-criteria queries in your examples.</li>
-          <li><strong>Test with adversarial inputs.</strong> "give me stuff" - what does your parser return? Design for graceful degradation.</li>
+          <li><strong>Test with adversarial inputs.</strong> "give me stuff" &mdash; what does your parser return? Design for graceful degradation.</li>
           <li><strong>Cheaper/smaller models are often fine for extraction.</strong> GPT-4o-mini or Claude Haiku handle structured extraction well at 10x lower cost than full models.</li>
         </ul>
       </div>
 
       <div class="callout warn">
-        <span class="callout-icon">&#9679;</span>
+        <span class="callout-icon">&#x1F4A1;</span>
         <div class="callout-body">
           <div class="callout-title">Always validate LLM JSON output</div>
           <div class="callout-text">Even with a perfect prompt, LLMs occasionally return malformed JSON, especially at high throughput. Always wrap your json.loads() in try/except and have a fallback (e.g., treat as a keyword-only search).</div>
@@ -1314,18 +1313,18 @@ Return ONLY the JSON object. No explanation. No markdown.
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" onclick="showModule('m2', document.getElementById('nav-m2'))">? Tokens & Embeddings</button>
-        <button class="done-btn" id="done-m3" onclick="markDone('m3')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('m4', document.getElementById('nav-m4'))">Next: Vector Databases ?</button>
+        <button class="nav-btn" onclick="showModule('m2', document.getElementById('nav-m2'))">&larr; Tokens & Embeddings</button>
+        <button class="done-btn" id="done-m3" onclick="markDone('m3')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('m4', document.getElementById('nav-m4'))">Next: Vector Databases &rarr;</button>
       </div>
     </div>
 
     <!-- MODULE 4 -->
     <div id="m4" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(249,168,37,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(249,168,37,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 04 - Search & Retrieval</div>
+          <div class="module-num">Module 04 &mdash; Search & Retrieval</div>
           <div class="module-title">Vector Databases & Semantic Search</div>
           <div class="module-desc">How to store millions of embeddings and retrieve the closest ones in milliseconds.</div>
         </div>
@@ -1333,7 +1332,7 @@ Return ONLY the JSON object. No explanation. No markdown.
 
       <div class="section">
         <div class="section-title">The Problem Vector DBs Solve</div>
-        <p>You have 10,000 resource embeddings (each a 1536-dimensional vector). A user query arrives. You need to find the top-10 most similar resources. Computing cosine similarity against all 10,000 resources every query works at small scale - but is too slow at scale. Vector databases solve this with <strong>Approximate Nearest Neighbor (ANN)</strong> indexing algorithms (HNSW, IVF) that find the closest vectors in microseconds.</p>
+        <p>You have 10,000 product embeddings (each a 1536-dimensional vector). A user query arrives. You need to find the top-10 most similar products. Computing cosine similarity against all 10,000 products every query works at small scale &mdash; but is too slow at scale. Vector databases solve this with <strong>Approximate Nearest Neighbor (ANN)</strong> indexing algorithms (HNSW, IVF) that find the closest vectors in microseconds.</p>
       </div>
 
       <div class="section">
@@ -1347,36 +1346,36 @@ Return ONLY the JSON object. No explanation. No markdown.
               <td>pgvector</td>
               <td>PostgreSQL extension</td>
               <td>You already use Postgres. Simplest to start.</td>
-              <td>? Full SQL</td>
+              <td>✓ Full SQL</td>
             </tr>
             <tr>
               <td>Pinecone</td>
               <td>Managed cloud</td>
               <td>Production, no infra management</td>
-              <td>? Metadata filters</td>
+              <td>✓ Metadata filters</td>
             </tr>
             <tr>
               <td>Weaviate</td>
               <td>Open source / cloud</td>
               <td>Hybrid search built-in</td>
-              <td>? GraphQL</td>
+              <td>✓ GraphQL</td>
             </tr>
             <tr>
               <td>Chroma</td>
               <td>Open source, local</td>
               <td>Development & prototyping</td>
-              <td>? Basic filters</td>
+              <td>✓ Basic filters</td>
             </tr>
             <tr>
               <td>FAISS</td>
               <td>Library (Meta)</td>
               <td>Custom, high performance, no server</td>
-              <td>? Manual</td>
+              <td>◐ Manual</td>
             </tr>
           </tbody>
         </table>
         <div class="callout tip">
-          <span class="callout-icon">&#9679;</span>
+          <span class="callout-icon">&#x1F4A1;</span>
           <div class="callout-body">
             <div class="callout-title">Recommendation for your transition build</div>
             <div class="callout-text">Start with <strong>pgvector</strong> if you're already using PostgreSQL, or <strong>Chroma</strong> locally for prototyping. Move to Pinecone for production. All have Python clients with similar APIs.</div>
@@ -1385,16 +1384,16 @@ Return ONLY the JSON object. No explanation. No markdown.
       </div>
 
       <div class="section">
-        <div class="section-title">Metadata Filtering - Critical for AI engineering platform</div>
-        <p>Pure vector search returns "semantically similar" resources, but can't enforce <strong>"under Ksh 50,000"</strong> or <strong>"rating ? 4.0"</strong>. You solve this with <strong>metadata filters</strong> - structured attributes stored alongside the vector.</p>
+        <div class="section-title">Metadata Filtering &mdash; Critical for E-Commerce</div>
+        <p>Pure vector search returns "semantically similar" products, but can't enforce <strong>"under Ksh 50,000"</strong> or <strong>"rating &ge; 4.0"</strong>. You solve this with <strong>metadata filters</strong> &mdash; structured attributes stored alongside the vector.</p>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">Python - Chroma with Metadata Filtering</span><button class="code-copy">copy</button></div>
+          <div class="code-header"><span class="code-lang">Python &mdash; Chroma with Metadata Filtering</span><button class="code-copy">copy</button></div>
           <pre><span class="kw">import</span> chromadb
 
 client = chromadb.<span class="fn">Client</span>()
-collection = client.<span class="fn">create_collection</span>(<span class="str">"resources"</span>)
+collection = client.<span class="fn">create_collection</span>(<span class="str">"products"</span>)
 
-<span class="cm"># Index resources with metadata</span>
+<span class="cm"># Index products with metadata</span>
 collection.<span class="fn">add</span>(
     ids=[<span class="str">"prod_001"</span>, <span class="str">"prod_002"</span>],
     embeddings=[product_vec_1, product_vec_2],
@@ -1421,44 +1420,44 @@ results = collection.<span class="fn">query</span>(
 
       <div class="section">
         <div class="section-title">Hybrid Search</div>
-        <p>The best production search combines <strong>dense (vector) search</strong> with <strong>sparse (keyword/BM25) search</strong>. Dense search finds semantically similar resources; sparse search catches exact keyword matches (e.g., model numbers like "RTX 4070"). The scores are merged via <strong>Reciprocal Rank Fusion (RRF)</strong>.</p>
+        <p>The best production search combines <strong>dense (vector) search</strong> with <strong>sparse (keyword/BM25) search</strong>. Dense search finds semantically similar products; sparse search catches exact keyword matches (e.g., model numbers like "RTX 4070"). The scores are merged via <strong>Reciprocal Rank Fusion (RRF)</strong>.</p>
         <div class="pipeline">
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">User Query</div><div class="pipe-box-sub">raw text</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">User Query</div><div class="pipe-box-sub">raw text</div></div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">Dense Search</div><div class="pipe-box-sub">vector similarity</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">Dense Search</div><div class="pipe-box-sub">vector similarity</div></div>
           </div>
           <div class="pipe-arrow">+</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">Sparse Search</div><div class="pipe-box-sub">BM25 keywords</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">Sparse Search</div><div class="pipe-box-sub">BM25 keywords</div></div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">RRF Merge</div><div class="pipe-box-sub">rank fusion</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">RRF Merge</div><div class="pipe-box-sub">rank fusion</div></div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">Top Results</div><div class="pipe-box-sub">ranked list</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">Top Results</div><div class="pipe-box-sub">ranked list</div></div>
           </div>
         </div>
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" onclick="showModule('m3', document.getElementById('nav-m3'))">? Prompt Engineering</button>
-        <button class="done-btn" id="done-m4" onclick="markDone('m4')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('m5', document.getElementById('nav-m5'))">Next: RAG ?</button>
+        <button class="nav-btn" onclick="showModule('m3', document.getElementById('nav-m3'))">&larr; Prompt Engineering</button>
+        <button class="done-btn" id="done-m4" onclick="markDone('m4')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('m5', document.getElementById('nav-m5'))">Next: RAG &rarr;</button>
       </div>
     </div>
 
     <!-- MODULE 5 -->
     <div id="m5" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(108,99,255,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(108,99,255,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 05 - Search & Retrieval</div>
-          <div class="module-title">RAG — Retrieval Augmented Generation</div>
+          <div class="module-num">Module 05 &mdash; Search & Retrieval</div>
+          <div class="module-title">RAG &mdash; Retrieval Augmented Generation</div>
           <div class="module-desc">The most widely used LLM application pattern. Connect LLMs to external, up-to-date knowledge.</div>
         </div>
       </div>
@@ -1468,34 +1467,34 @@ results = collection.<span class="fn">query</span>(
         <p>LLMs have two problems: their knowledge is frozen at a training cutoff, and they don't know your specific data. <strong>RAG</strong> solves both by retrieving relevant documents/data at query time and injecting them into the prompt as context. The LLM then generates a response grounded in that retrieved information.</p>
         <div class="pipeline">
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">?</div><div class="pipe-box-label">User Query</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">User Query</div></div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">Retriever</div><div class="pipe-box-sub">vector DB lookup</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">Retriever</div><div class="pipe-box-sub">vector DB lookup</div></div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">Context Docs</div><div class="pipe-box-sub">top-k results</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">Context Docs</div><div class="pipe-box-sub">top-k results</div></div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">LLM</div><div class="pipe-box-sub">generates answer</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">LLM</div><div class="pipe-box-sub">generates answer</div></div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
-            <div class="pipe-box"><div class="pipe-box-icon">&#9679;</div><div class="pipe-box-label">Response</div></div>
+            <div class="pipe-box"><div class="pipe-box-icon">&#x2699;&#xFE0F;</div><div class="pipe-box-label">Response</div></div>
           </div>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">RAG Applied to resource Search</div>
-        <p>In your AI engineering platform context, RAG works slightly differently - you're not generating a text answer, you're retrieving resources. But the pattern is the same. You can extend it to have the LLM <strong>explain why</strong> certain resources match, or <strong>re-rank</strong> retrieved candidates.</p>
+        <div class="section-title">RAG Applied to Product Search</div>
+        <p>In your e-commerce context, RAG works slightly differently &mdash; you're not generating a text answer, you're retrieving products. But the pattern is the same. You can extend it to have the LLM <strong>explain why</strong> certain products match, or <strong>re-rank</strong> retrieved candidates.</p>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">Python - RAG-style resource Search</span><button class="code-copy">copy</button></div>
+          <div class="code-header"><span class="code-lang">Python &mdash; RAG-style Product Search</span><button class="code-copy">copy</button></div>
           <pre><span class="kw">def</span> <span class="fn">search_products</span>(user_query: <span class="cls">str</span>) -> <span class="cls">dict</span>:
-    <span class="cm"># Step 1: Parse query with LLM ? structured filters</span>
+    <span class="cm"># Step 1: Parse query with LLM &rarr; structured filters</span>
     parsed = <span class="fn">parse_query</span>(user_query)
     
     <span class="cm"># Step 2: Embed the query</span>
@@ -1517,7 +1516,7 @@ results = collection.<span class="fn">query</span>(
     explanation = <span class="fn">llm_rerank</span>(user_query, context)
     
     <span class="kw">return</span> {
-        <span class="str">"resources"</span>: candidates[:<span class="num">10</span>],
+        <span class="str">"products"</span>: candidates[:<span class="num">10</span>],
         <span class="str">"explanation"</span>: explanation  <span class="cm"># "Showing laptops under Ksh 40k, sorted by rating"</span>
     }</pre>
         </div>
@@ -1527,41 +1526,41 @@ results = collection.<span class="fn">query</span>(
         <div class="section-title">Advanced RAG Concepts</div>
         <div class="cards">
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Re-ranking</div>
-            <div class="card-text">After retrieving top-20 candidates, use a cross-encoder model or LLM to re-score them relative to the query. More accurate but slower - only do it on the final shortlist.</div>
+            <div class="card-text">After retrieving top-20 candidates, use a cross-encoder model or LLM to re-score them relative to the query. More accurate but slower &mdash; only do it on the final shortlist.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Query Rewriting</div>
-            <div class="card-text">Use an LLM to expand or rewrite the user's query before searching. "laptop for coding" ? also search for "developer notebook", "programming computer".</div>
+            <div class="card-text">Use an LLM to expand or rewrite the user's query before searching. "laptop for coding" &rarr; also search for "developer notebook", "programming computer".</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Chunking Strategy</div>
-            <div class="card-text">For long resource descriptions, you may split them into chunks and embed each separately. Retrieve the most relevant chunk, then fetch the full resource.</div>
+            <div class="card-text">For long product descriptions, you may split them into chunks and embed each separately. Retrieve the most relevant chunk, then fetch the full product.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">Iterative RAG</div>
-            <div class="card-text">The LLM evaluates retrieved results, then retrieves again if unsatisfied. More powerful but slower - used in agentic systems (covered in Module 07).</div>
+            <div class="card-text">The LLM evaluates retrieved results, then retrieves again if unsatisfied. More powerful but slower &mdash; used in agentic systems (covered in Module 07).</div>
           </div>
         </div>
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" onclick="showModule('m4', document.getElementById('nav-m4'))">? Vector Databases</button>
-        <button class="done-btn" id="done-m5" onclick="markDone('m5')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('m6', document.getElementById('nav-m6'))">Next: LLM APIs ?</button>
+        <button class="nav-btn" onclick="showModule('m4', document.getElementById('nav-m4'))">&larr; Vector Databases</button>
+        <button class="done-btn" id="done-m5" onclick="markDone('m5')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('m6', document.getElementById('nav-m6'))">Next: LLM APIs &rarr;</button>
       </div>
     </div>
 
     <!-- MODULE 6 -->
     <div id="m6" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(255,101,132,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(255,101,132,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 06 - Building Apps</div>
+          <div class="module-num">Module 06 &mdash; Building Apps</div>
           <div class="module-title">LLM APIs & Structured Outputs</div>
           <div class="module-desc">Production patterns for getting reliable, structured data from LLMs at scale.</div>
         </div>
@@ -1573,14 +1572,14 @@ results = collection.<span class="fn">query</span>(
         <ol class="styled">
           <li><strong>Prompt-based:</strong> "Return only JSON" in the system prompt. Works most of the time but not guaranteed. Add JSON validation + retry.</li>
           <li><strong>JSON Mode:</strong> A special API parameter (OpenAI, Anthropic) that forces the model to only output valid JSON. More reliable, still needs schema validation.</li>
-          <li><strong>Function Calling / Tool Use:</strong> Define a typed schema; the model fills in values. Most reliable - the API enforces the schema structure.</li>
+          <li><strong>Function Calling / Tool Use:</strong> Define a typed schema; the model fills in values. Most reliable &mdash; the API enforces the schema structure.</li>
         </ol>
       </div>
 
       <div class="section">
         <div class="section-title">Function Calling (the Gold Standard)</div>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">Python - Structured Output via Function Calling</span><button class="code-copy">copy</button></div>
+          <div class="code-header"><span class="code-lang">Python &mdash; Structured Output via Function Calling</span><button class="code-copy">copy</button></div>
           <pre><span class="kw">import</span> json
 <span class="kw">from</span> openai <span class="kw">import</span> <span class="cls">OpenAI</span>
 
@@ -1624,9 +1623,9 @@ parsed = json.<span class="fn">loads</span>(
 
       <div class="section">
         <div class="section-title">Pydantic for Validation (with Instructor)</div>
-        <p>The <strong>Instructor</strong> library wraps the OpenAI/Anthropic client to automatically parse and validate LLM outputs into Pydantic models - the cleanest pattern for production:</p>
+        <p>The <strong>Instructor</strong> library wraps the OpenAI/Anthropic client to automatically parse and validate LLM outputs into Pydantic models &mdash; the cleanest pattern for production:</p>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">Python - Pydantic + Instructor</span><button class="code-copy">copy</button></div>
+          <div class="code-header"><span class="code-lang">Python &mdash; Pydantic + Instructor</span><button class="code-copy">copy</button></div>
           <pre><span class="kw">import</span> instructor
 <span class="kw">from</span> pydantic <span class="kw">import</span> <span class="cls">BaseModel</span>
 <span class="kw">from</span> typing <span class="kw">import</span> <span class="cls">Optional</span>, <span class="cls">List</span>, <span class="cls">Literal</span>
@@ -1646,7 +1645,7 @@ client = instructor.<span class="fn">from_openai</span>(<span class="cls">OpenAI
 <span class="kw">def</span> <span class="fn">parse_query</span>(user_query: <span class="cls">str</span>) -> <span class="cls">SearchQuery</span>:
     <span class="kw">return</span> client.chat.completions.<span class="fn">create</span>(
         model=<span class="str">"gpt-4o-mini"</span>,
-        response_model=<span class="cls">SearchQuery</span>,  <span class="cm"># ? magic line</span>
+        response_model=<span class="cls">SearchQuery</span>,  <span class="cm"># key parsing line</span>
         messages=[{<span class="str">"role"</span>: <span class="str">"user"</span>, <span class="str">"content"</span>: user_query}],
         temperature=<span class="num">0</span>
     )
@@ -1657,7 +1656,7 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
 <span class="fn">print</span>(result.brands)    <span class="cm"># ["samsung"]</span></pre>
         </div>
         <div class="callout tip">
-          <span class="callout-icon">?</span>
+          <span class="callout-icon">&#x1F4A1;</span>
           <div class="callout-body">
             <div class="callout-title">Recommended stack for your AI engineering build</div>
             <div class="callout-text"><strong>Instructor + Pydantic</strong> is the cleanest approach. It handles retries, validation, and type-safe output automatically. Install with: <code>pip install instructor pydantic</code></div>
@@ -1668,27 +1667,27 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
       <div class="section">
         <div class="section-title">Important API Concepts</div>
         <ul class="styled">
-          <li><strong>Temperature</strong> - Controls randomness. 0 = deterministic (use for parsing). 0.7-1.0 = creative generation.</li>
-          <li><strong>Max tokens</strong> - Limits response length. For JSON extraction, 200-500 is plenty. Saves cost.</li>
-          <li><strong>System vs User messages</strong> - System sets behavior; user is the input. Never put sensitive logic in user messages (prompt injection risk).</li>
-          <li><strong>Streaming</strong> - Stream tokens as they're generated for a better UX. Not needed for backend parsing tasks.</li>
-          <li><strong>Rate limits & retries</strong> - API calls fail. Use exponential backoff. Libraries like <code>tenacity</code> handle this cleanly.</li>
+          <li><strong>Temperature</strong> &mdash; Controls randomness. 0 = deterministic (use for parsing). 0.7&mdash;1.0 = creative generation.</li>
+          <li><strong>Max tokens</strong> &mdash; Limits response length. For JSON extraction, 200&mdash;500 is plenty. Saves cost.</li>
+          <li><strong>System vs User messages</strong> &mdash; System sets behavior; user is the input. Never put sensitive logic in user messages (prompt injection risk).</li>
+          <li><strong>Streaming</strong> &mdash; Stream tokens as they're generated for a better UX. Not needed for backend parsing tasks.</li>
+          <li><strong>Rate limits & retries</strong> &mdash; API calls fail. Use exponential backoff. Libraries like <code>tenacity</code> handle this cleanly.</li>
         </ul>
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" onclick="showModule('m5', document.getElementById('nav-m5'))">? RAG</button>
-        <button class="done-btn" id="done-m6" onclick="markDone('m6')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('m7', document.getElementById('nav-m7'))">Next: Agents ?</button>
+        <button class="nav-btn" onclick="showModule('m5', document.getElementById('nav-m5'))">&larr; RAG</button>
+        <button class="done-btn" id="done-m6" onclick="markDone('m6')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('m7', document.getElementById('nav-m7'))">Next: Agents &rarr;</button>
       </div>
     </div>
 
     <!-- MODULE 7 -->
     <div id="m7" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(67,233,123,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(67,233,123,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 07 - Building Apps</div>
+          <div class="module-num">Module 07 &mdash; Building Apps</div>
           <div class="module-title">LLM Agents & Tool Use</div>
           <div class="module-desc">When an LLM doesn't just generate text, but takes actions, uses tools, and reasons iteratively.</div>
         </div>
@@ -1696,27 +1695,27 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
 
       <div class="section">
         <div class="section-title">What is an LLM Agent?</div>
-        <p>An <strong>agent</strong> is an LLM that can decide what to do next - it can call tools, observe results, and loop until it has a final answer. Unlike a one-shot prompt that returns text, an agent operates in a <strong>reason ? act ? observe ? repeat</strong> loop.</p>
-        <p>For most AI engineering platform search use cases, you don't need a full agent - a simple pipeline is faster and cheaper. But understanding agents unlocks more powerful features like "find me laptops with the most recent positive reviews" (which might need a web search tool + a database query tool).</p>
+        <p>An <strong>agent</strong> is an LLM that can decide what to do next &mdash; it can call tools, observe results, and loop until it has a final answer. Unlike a one-shot prompt that returns text, an agent operates in a <strong>reason &rarr; act &rarr; observe &rarr; repeat</strong> loop.</p>
+        <p>For most e-commerce search use cases, you don't need a full agent &mdash; a simple pipeline is faster and cheaper. But understanding agents unlocks more powerful features like "find me laptops with the most recent positive reviews" (which might need a web search tool + a database query tool).</p>
       </div>
 
       <div class="section">
         <div class="section-title">The ReAct Pattern</div>
         <p><strong>ReAct</strong> (Reason + Act) is the foundational agent pattern. The LLM generates a "thought" (reasoning), then an "action" (tool call), observes the result, and repeats:</p>
         <div class="code-block">
-          <div class="code-header"><span class="code-lang">ReAct Trace - Natural Language</span></div>
+          <div class="code-header"><span class="code-lang">ReAct Trace &mdash; Natural Language</span></div>
           <pre><span class="cm">User: "Find me the best reviewed laptop under 45000 that's good for video editing"</span>
 
 <span class="kw">Thought:</span> I need to search for laptops under 45000 KSH that support video editing.
-         Key specs: RAM ? 16GB, dedicated GPU, good display.
+         Key specs: RAM &ge; 16GB, dedicated GPU, good display.
 <span class="kw">Action:</span> search_products(category="laptop", max_price=45000, keywords=["video editing", "GPU", "RAM"])
-<span class="kw">Observation:</span> Found 12 resources. Top results: [HP Envy, Dell Inspiron 15, Lenovo IdeaPad]
+<span class="kw">Observation:</span> Found 12 products. Top results: [HP Envy, Dell Inspiron 15, Lenovo IdeaPad]
 
 <span class="kw">Thought:</span> Let me check the reviews for the top 3 to confirm video editing suitability.
 <span class="kw">Action:</span> get_reviews(product_ids=["HP_Envy", "Dell_Inspiron_15", "Lenovo_IdeaPad"])
-<span class="kw">Observation:</span> HP Envy: 4.6? "Great for video editing". Dell: 4.2? mixed reviews on heat.
+<span class="kw">Observation:</span> HP Envy: 4.6★ "Great for video editing". Dell: 4.2★ mixed reviews on heat.
 
-<span class="kw">Final Answer:</span> The HP Envy is the best match - highly rated for video editing at Ksh 43,500.</pre>
+<span class="kw">Final Answer:</span> The HP Envy is the best match &mdash; highly rated for video editing at Ksh 43,500.</pre>
         </div>
       </div>
 
@@ -1724,22 +1723,22 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
         <div class="section-title">Tools Your Search Agent Might Have</div>
         <div class="cards">
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">search_products</div>
-            <div class="card-text">Vector search with metadata filters. The primary tool - takes category, price range, keywords, returns ranked resource list.</div>
+            <div class="card-text">Vector search with metadata filters. The primary tool &mdash; takes category, price range, keywords, returns ranked product list.</div>
           </div>
           <div class="card">
-            <div class="card-icon">?</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">get_reviews</div>
-            <div class="card-text">Fetch and summarize reviews for specific resources. The LLM can reason about review sentiment to refine rankings.</div>
+            <div class="card-text">Fetch and summarize reviews for specific products. The LLM can reason about review sentiment to refine rankings.</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">compare_products</div>
-            <div class="card-text">Given 2-3 resources, generate a structured comparison table. Useful for follow-up queries like "what's the difference between these two?"</div>
+            <div class="card-text">Given 2&mdash;3 products, generate a structured comparison table. Useful for follow-up queries like "what's the difference between these two?"</div>
           </div>
           <div class="card">
-            <div class="card-icon">&#9679;</div>
+            <div class="card-icon">&#x2728;</div>
             <div class="card-title">clarify_query</div>
             <div class="card-text">If the query is too vague, ask the user a clarifying question rather than guessing. "Do you mean laptop or desktop?"</div>
           </div>
@@ -1749,10 +1748,10 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
       <div class="section">
         <div class="section-title">Frameworks (Don't Over-Engineer)</div>
         <div class="callout warn">
-          <span class="callout-icon">&#9679;</span>
+          <span class="callout-icon">&#x1F4A1;</span>
           <div class="callout-body">
             <div class="callout-title">Framework fatigue is real</div>
-            <div class="callout-text">LangChain, LlamaIndex, AutoGen, CrewAI - these frameworks add abstraction but also complexity. For a focused use case like resource search, <strong>start with direct API calls</strong> and only introduce a framework if you genuinely need its features. Many production LLM apps are just Python functions.</div>
+            <div class="callout-text">LangChain, LlamaIndex, AutoGen, CrewAI &mdash; these frameworks add abstraction but also complexity. For a focused use case like product search, <strong>start with direct API calls</strong> and only introduce a framework if you genuinely need its features. Many production LLM apps are just Python functions.</div>
           </div>
         </div>
         <table class="compare-table">
@@ -1770,18 +1769,18 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" onclick="showModule('m6', document.getElementById('nav-m6'))">? LLM APIs</button>
-        <button class="done-btn" id="done-m7" onclick="markDone('m7')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('m8', document.getElementById('nav-m8'))">Next: Putting It Together ?</button>
+        <button class="nav-btn" onclick="showModule('m6', document.getElementById('nav-m6'))">&larr; LLM APIs</button>
+        <button class="done-btn" id="done-m7" onclick="markDone('m7')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('m8', document.getElementById('nav-m8'))">Next: Putting It Together &rarr;</button>
       </div>
     </div>
 
     <!-- MODULE 8 -->
     <div id="m8" class="module">
       <div class="module-header">
-        <div class="module-icon" style="background: rgba(249,168,37,0.15);">&#9679;</div>
+        <div class="module-icon" style="background: rgba(249,168,37,0.15);">&#x1F9E0;</div>
         <div class="module-meta">
-          <div class="module-num">Module 08 - Capstone</div>
+          <div class="module-num">Module 08 &mdash; Capstone</div>
           <div class="module-title">Putting It All Together</div>
           <div class="module-desc">The complete architecture for your AI engineering copilot system, end to end.</div>
         </div>
@@ -1792,47 +1791,47 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
         <div class="pipeline" style="flex-wrap:wrap; gap:8px;">
           <div class="pipe-step">
             <div class="pipe-box" style="background:rgba(108,99,255,0.1);border-color:rgba(108,99,255,0.3)">
-              <div class="pipe-box-icon">&#9679;</div>
+              <div class="pipe-box-icon">&#x2699;&#xFE0F;</div>
               <div class="pipe-box-label">User Query</div>
               <div class="pipe-box-sub">"laptops below 50k"</div>
             </div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
             <div class="pipe-box" style="background:rgba(255,101,132,0.1);border-color:rgba(255,101,132,0.3)">
-              <div class="pipe-box-icon">&#9679;</div>
+              <div class="pipe-box-icon">&#x2699;&#xFE0F;</div>
               <div class="pipe-box-label">LLM Parser</div>
               <div class="pipe-box-sub">intent extraction</div>
             </div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
             <div class="pipe-box" style="background:rgba(67,233,123,0.1);border-color:rgba(67,233,123,0.3)">
-              <div class="pipe-box-icon">&#9679;</div>
+              <div class="pipe-box-icon">&#x2699;&#xFE0F;</div>
               <div class="pipe-box-label">Embed Query</div>
               <div class="pipe-box-sub">embedding model</div>
             </div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
             <div class="pipe-box" style="background:rgba(249,168,37,0.1);border-color:rgba(249,168,37,0.3)">
-              <div class="pipe-box-icon">&#9679;</div>
+              <div class="pipe-box-icon">&#x2699;&#xFE0F;</div>
               <div class="pipe-box-label">Vector DB</div>
               <div class="pipe-box-sub">ANN + filters</div>
             </div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
             <div class="pipe-box" style="background:rgba(108,99,255,0.1);border-color:rgba(108,99,255,0.3)">
-              <div class="pipe-box-icon">&#9679;</div>
+              <div class="pipe-box-icon">&#x2699;&#xFE0F;</div>
               <div class="pipe-box-label">Ranker</div>
               <div class="pipe-box-sub">score + sort</div>
             </div>
           </div>
-          <div class="pipe-arrow">?</div>
+          <div class="pipe-arrow">&rarr;</div>
           <div class="pipe-step">
             <div class="pipe-box" style="background:rgba(255,101,132,0.1);border-color:rgba(255,101,132,0.3)">
-              <div class="pipe-box-icon">&#9679;</div>
+              <div class="pipe-box-icon">&#x2699;&#xFE0F;</div>
               <div class="pipe-box-label">Top 10 Results</div>
               <div class="pipe-box-sub">returned to UI</div>
             </div>
@@ -1849,7 +1848,7 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
           <tbody>
             <tr><td>LLM (parsing)</td><td>GPT-4o-mini or Claude Haiku</td><td>Fast, cheap, accurate enough for extraction</td></tr>
             <tr><td>Embeddings</td><td>text-embedding-3-small</td><td>1536-dim, best price/quality ratio</td></tr>
-            <tr><td>Vector DB</td><td>pgvector (start) ? Pinecone (scale)</td><td>Reuse existing Postgres; migrate later</td></tr>
+            <tr><td>Vector DB</td><td>pgvector (start) &rarr; Pinecone (scale)</td><td>Reuse existing Postgres; migrate later</td></tr>
             <tr><td>Structured output</td><td>Instructor + Pydantic</td><td>Cleanest validation pattern</td></tr>
             <tr><td>Backend API</td><td>FastAPI (Python)</td><td>Async, fast, Pydantic-native</td></tr>
             <tr><td>Caching</td><td>Redis</td><td>Cache embeddings of common queries</td></tr>
@@ -1860,38 +1859,38 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
       <div class="section">
         <div class="section-title">Recommended Build Order</div>
         <ol class="styled">
-          <li><strong>resource data pipeline</strong> - Write the script that embeds all your resources and stores them in pgvector with metadata (price, rating, category, brand).</li>
-          <li><strong>Query parser</strong> - Build and test the LLM intent extraction with Instructor/Pydantic. Validate on 50+ test queries.</li>
-          <li><strong>Search endpoint</strong> - Wire parser ? embedding ? vector search ? return results. Test end-to-end locally.</li>
-          <li><strong>Ranking layer</strong> - Implement a scoring function that combines semantic similarity score, rating, and review count.</li>
-          <li><strong>FastAPI wrapper</strong> - Expose as a REST API. Connect to your AI engineering platform frontend.</li>
-          <li><strong>Evaluation loop</strong> - Track which results users click. Use this data to improve embeddings or ranking weights.</li>
+          <li><strong>Product data pipeline</strong> &mdash; Write the script that embeds all your products and stores them in pgvector with metadata (price, rating, category, brand).</li>
+          <li><strong>Query parser</strong> &mdash; Build and test the LLM intent extraction with Instructor/Pydantic. Validate on 50+ test queries.</li>
+          <li><strong>Search endpoint</strong> &mdash; Wire parser &rarr; embedding &rarr; vector search &rarr; return results. Test end-to-end locally.</li>
+          <li><strong>Ranking layer</strong> &mdash; Implement a scoring function that combines semantic similarity score, rating, and review count.</li>
+          <li><strong>FastAPI wrapper</strong> &mdash; Expose as a REST API. Connect to your e-commerce frontend.</li>
+          <li><strong>Evaluation loop</strong> &mdash; Track which results users click. Use this data to improve embeddings or ranking weights.</li>
         </ol>
       </div>
 
       <div class="section">
         <div class="section-title">Key Pitfalls to Avoid</div>
         <ul class="styled">
-          <li><strong>Don't embed prices/ratings</strong> - Put them in metadata filters, not the text you embed. Embeddings don't do numeric comparisons well.</li>
-          <li><strong>Don't call the LLM for every search</strong> - Cache parsed results for identical queries. Redis with a 1-hour TTL cuts LLM calls by 40-60%.</li>
-          <li><strong>Don't trust LLM output blindly</strong> - Always validate. A malformed max_price could cause a division by zero or wrong SQL.</li>
-          <li><strong>Refresh embeddings when resources change</strong> - Build a pipeline to re-embed and update the vector DB when resource descriptions or specs change.</li>
-          <li><strong>Evaluate before deploying</strong> - Define an offline test set: 100 queries with expected top-3 resources. Measure recall@10 before shipping.</li>
+          <li><strong>Don't embed prices/ratings</strong> &mdash; Put them in metadata filters, not the text you embed. Embeddings don't do numeric comparisons well.</li>
+          <li><strong>Don't call the LLM for every search</strong> &mdash; Cache parsed results for identical queries. Redis with a 1-hour TTL cuts LLM calls by 40&mdash;60%.</li>
+          <li><strong>Don't trust LLM output blindly</strong> &mdash; Always validate. A malformed max_price could cause a division by zero or wrong SQL.</li>
+          <li><strong>Refresh embeddings when products change</strong> &mdash; Build a pipeline to re-embed and update the vector DB when product descriptions or specs change.</li>
+          <li><strong>Evaluate before deploying</strong> &mdash; Define an offline test set: 100 queries with expected top-3 products. Measure recall@10 before shipping.</li>
         </ul>
       </div>
 
       <div class="callout tip">
-        <span class="callout-icon">&#9679;</span>
+        <span class="callout-icon">&#x1F4A1;</span>
         <div class="callout-body">
           <div class="callout-title">You're ready to build</div>
-          <div class="callout-text">You now have the full conceptual foundation. The next step is to prototype the resource embedding pipeline and query parser - these are the two hardest pieces and everything else connects to them. Start small: 100 resources, 20 test queries, measure, iterate.</div>
+          <div class="callout-text">You now have the full conceptual foundation. The next step is to prototype the product embedding pipeline and query parser &mdash; these are the two hardest pieces and everything else connects to them. Start small: 100 products, 20 test queries, measure, iterate.</div>
         </div>
       </div>
 
       <div class="module-nav">
-        <button class="nav-btn" onclick="showModule('m7', document.getElementById('nav-m7'))">? Agents</button>
-        <button class="done-btn" id="done-m8" onclick="markDone('m8')">Mark complete ?</button>
-        <button class="nav-btn primary" onclick="showModule('home', null)" style="background: var(--accent3); border-color: var(--accent3);">Course Complete!</button>
+        <button class="nav-btn" onclick="showModule('m7', document.getElementById('nav-m7'))">&larr; Agents</button>
+        <button class="done-btn" id="done-m8" onclick="markDone('m8')">Mark complete ✔</button>
+        <button class="nav-btn primary" onclick="showModule('home', null)" style="background: var(--accent3); border-color: var(--accent3);">&#x1F393; Course Complete!</button>
       </div>
     </div>
 
@@ -1916,7 +1915,7 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
     done.add(id);
     save();
     const btn = document.getElementById('done-' + id);
-    if (btn) { btn.textContent = '? Completed'; btn.classList.add('marked'); }
+    if (btn) { btn.textContent = '✔ Completed'; btn.classList.add('marked'); }
     const navItem = document.getElementById('nav-' + id);
     if (navItem) navItem.classList.add('done');
     updateProgress();
@@ -1933,7 +1932,7 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
   // Restore done state
   done.forEach(id => {
     const btn = document.getElementById('done-' + id);
-    if (btn) { btn.textContent = '? Completed'; btn.classList.add('marked'); }
+    if (btn) { btn.textContent = '✔ Completed'; btn.classList.add('marked'); }
     const navItem = document.getElementById('nav-' + id);
     if (navItem) navItem.classList.add('done');
   });
@@ -1952,3 +1951,4 @@ result = <span class="fn">parse_query</span>(<span class="str">"Samsung phones w
 </script>
 </body>
 </html>
+
