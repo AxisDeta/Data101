@@ -61,6 +61,35 @@ body {
   color: #111827 !important;
 }
 .google-btn svg { display: block; }
+.google-btn {
+  position: relative;
+}
+.google-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: max-content;
+  max-width: 260px;
+  padding: 0.42rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0f0f16;
+  color: var(--text);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.67rem;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 20;
+}
+.google-btn[data-tooltip]:hover::after,
+.google-btn[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .main-wrap { padding: 22px 0 40px; }
 .hero {
@@ -262,6 +291,9 @@ input, textarea, select {
     width: 100%;
     justify-content: flex-end;
     margin-left: 0;
+  }
+  .google-btn[data-tooltip]::after {
+    display: none;
   }
   .resource-row {
     flex-direction: column;
